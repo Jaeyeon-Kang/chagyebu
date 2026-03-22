@@ -9,6 +9,7 @@ const CALCULATORS = [
   {
     href: "/calculator/first-car-budget",
     icon: "🚗",
+    iconBg: "bg-blue-100",
     title: "첫차 총예산 계산기",
     desc: "차값만 보면 안 됩니다. 취등록세·보험·연료비·소모품까지 첫해 실제 총비용을 한 번에 확인하세요.",
     badge: "첫차 구매층 필수",
@@ -16,6 +17,7 @@ const CALCULATORS = [
   {
     href: "/calculator/fuel-vs-ev",
     icon: "⚡",
+    iconBg: "bg-teal-100",
     title: "연료비 비교 계산기",
     desc: "가솔린·하이브리드·EV 3가지 연료 타입의 월 비용을 나란히 비교해 드립니다.",
     badge: null,
@@ -23,6 +25,7 @@ const CALCULATORS = [
   {
     href: "/calculator/new-vs-used",
     icon: "🔄",
+    iconBg: "bg-violet-100",
     title: "신차 vs 중고차 총소유비",
     desc: "5년 기준 총소유비(감가상각 포함)로 신차와 중고차 중 어느 쪽이 유리한지 판단해 드립니다.",
     badge: null,
@@ -38,15 +41,43 @@ const POPULAR_GUIDES = [
 ];
 
 const CATEGORIES = [
-  { href: "/category/buying", icon: "🏷️", label: "살 때", accent: "hover:border-blue-400" },
-  { href: "/category/maintaining", icon: "🔧", label: "탈 때·정비", accent: "hover:border-emerald-400" },
-  { href: "/category/repairing", icon: "🛠️", label: "고장·수리", accent: "hover:border-amber-400" },
-  { href: "/category/ev", icon: "⚡", label: "EV·친환경", accent: "hover:border-teal-400" },
+  {
+    href: "/category/buying",
+    icon: "🏷️",
+    label: "살 때",
+    bg: "bg-blue-50 hover:bg-blue-100",
+    border: "border-blue-200 hover:border-blue-300",
+    label_color: "text-blue-700",
+  },
+  {
+    href: "/category/maintaining",
+    icon: "🔧",
+    label: "탈 때·정비",
+    bg: "bg-emerald-50 hover:bg-emerald-100",
+    border: "border-emerald-200 hover:border-emerald-300",
+    label_color: "text-emerald-700",
+  },
+  {
+    href: "/category/repairing",
+    icon: "🛠️",
+    label: "고장·수리",
+    bg: "bg-amber-50 hover:bg-amber-100",
+    border: "border-amber-200 hover:border-amber-300",
+    label_color: "text-amber-700",
+  },
+  {
+    href: "/category/ev",
+    icon: "⚡",
+    label: "EV·친환경",
+    bg: "bg-teal-50 hover:bg-teal-100",
+    border: "border-teal-200 hover:border-teal-300",
+    label_color: "text-teal-700",
+  },
 ];
 
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 space-y-14">
+    <div className="mx-auto max-w-3xl px-4 py-12 space-y-12">
 
       {/* Hero */}
       <section className="space-y-4">
@@ -58,12 +89,12 @@ export default function HomePage() {
           정확한 실시간 견적이 아니라, 신뢰할 수 있는 범위와 판단 기준을 드립니다.
           숫자를 먼저 보고, 그 다음 왜 그런지 이해하세요.
         </p>
-        <div className="flex items-center gap-3 text-xs text-slate-400">
-          <span>가이드 12개</span>
-          <span className="w-px h-3 bg-slate-300" />
-          <span>계산기 3종</span>
-          <span className="w-px h-3 bg-slate-300" />
-          <span>매월 수치 업데이트</span>
+        <div className="flex items-center gap-2 flex-wrap">
+          {["가이드 12개", "계산기 3종", "매월 업데이트"].map((s) => (
+            <span key={s} className="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+              {s}
+            </span>
+          ))}
         </div>
       </section>
 
@@ -79,7 +110,9 @@ export default function HomePage() {
               href={c.href}
               className="group flex gap-4 bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md rounded-2xl p-5 transition-all shadow-sm"
             >
-              <span className="text-2xl shrink-0 mt-0.5">{c.icon}</span>
+              <div className={`w-11 h-11 ${c.iconBg} rounded-xl flex items-center justify-center text-xl shrink-0`}>
+                {c.icon}
+              </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="text-base font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
@@ -93,7 +126,7 @@ export default function HomePage() {
                 </div>
                 <p className="text-[15px] text-slate-500 mt-1 leading-relaxed">{c.desc}</p>
               </div>
-              <span className="text-slate-300 group-hover:text-blue-400 transition-colors self-center shrink-0 text-lg">→</span>
+              <span className="text-slate-400 group-hover:text-blue-500 transition-colors self-center shrink-0 text-lg">→</span>
             </Link>
           ))}
         </div>
@@ -104,15 +137,15 @@ export default function HomePage() {
         <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
           카테고리별 보기
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {CATEGORIES.map((c) => (
             <Link
               key={c.href}
               href={c.href}
-              className={`group flex flex-col items-center gap-2 py-5 bg-white border border-slate-200 ${c.accent} rounded-2xl transition-all shadow-sm hover:shadow-md`}
+              className={`group flex flex-col items-center gap-3 py-6 ${c.bg} border ${c.border} rounded-2xl transition-all shadow-sm hover:shadow-md`}
             >
-              <span className="text-2xl">{c.icon}</span>
-              <span className="text-sm text-slate-600 font-medium group-hover:text-slate-900 transition-colors">{c.label}</span>
+              <span className="text-3xl">{c.icon}</span>
+              <span className={`text-sm font-semibold ${c.label_color}`}>{c.label}</span>
             </Link>
           ))}
         </div>
@@ -131,7 +164,7 @@ export default function HomePage() {
               className="flex items-center justify-between px-5 py-3.5 text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors group"
             >
               <span>{g.label}</span>
-              <span className="text-slate-300 group-hover:text-blue-400 transition-colors">→</span>
+              <span className="text-slate-400 group-hover:text-blue-500 transition-colors">→</span>
             </Link>
           ))}
         </div>
@@ -145,7 +178,6 @@ export default function HomePage() {
         </p>
         <p>
           모든 수치는 제조사 매뉴얼, 국토교통부·한국전력 공공 통계, 서비스센터 공시가를 바탕으로 합니다.
-          업데이트 날짜와 출처 유형은 각 페이지에 표시됩니다.
         </p>
       </section>
 
