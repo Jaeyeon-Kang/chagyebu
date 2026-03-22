@@ -1,0 +1,13 @@
+{
+  "_comment": "연료 단가 기본값 — 월 1~2회 업데이트 권장",
+  "_updatedAt": "2026-03-22",
+  "_source": "한국석유공사 오피넷 전국 평균",
+  "gasoline": 1680,
+  "diesel": 1520,
+  "lpg": 1020,
+  "ev_home_slow": 120,
+  "ev_home_slow_night": 73,
+  "ev_public_slow": 255,
+  "ev_public_fast_50kw": 347,
+  "ev_public_fast_100kw": 420
+}

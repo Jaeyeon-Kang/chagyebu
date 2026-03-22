@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f172a;  /* slate-900 */
+  --foreground: #e2e8f0;  /* slate-200 */
+  --brand: #3b82f6;       /* blue-500 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Pretendard", "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont,
+    "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 슬라이더 스타일 통일 */
+input[type="range"] {
+  height: 4px;
+  border-radius: 999px;
+  background: #334155; /* slate-700 */
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}

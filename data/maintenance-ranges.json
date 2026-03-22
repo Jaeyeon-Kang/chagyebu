@@ -1,0 +1,104 @@
+{
+  "_comment": "주요 소모품 비용 범위 (부품비+공임) — 분기 1회 검토 권장",
+  "_updatedAt": "2026-03-22",
+  "_source": "제조사 공시가, 공식 서비스센터 기준",
+  "items": [
+    {
+      "key": "engineOil",
+      "name": "엔진오일 교환",
+      "totalMin": 35000,
+      "totalMax": 100000,
+      "partsMin": 25000,
+      "partsMax": 80000,
+      "laborMin": 10000,
+      "laborMax": 20000,
+      "intervalKm": 10000,
+      "intervalMonths": 12,
+      "note": "합성유 기준 상단, 광유 기준 하단"
+    },
+    {
+      "key": "brakePad",
+      "name": "브레이크패드 교환 (앞 1쌍)",
+      "totalMin": 70000,
+      "totalMax": 210000,
+      "partsMin": 40000,
+      "partsMax": 150000,
+      "laborMin": 30000,
+      "laborMax": 60000,
+      "intervalKm": 40000,
+      "note": "2mm 이하 교환 권장. 디스크 동시 교환 시 공임 절감 가능"
+    },
+    {
+      "key": "brakedisc",
+      "name": "브레이크 디스크 교환 (앞 1쌍)",
+      "totalMin": 150000,
+      "totalMax": 500000,
+      "partsMin": 100000,
+      "partsMax": 400000,
+      "laborMin": 50000,
+      "laborMax": 100000,
+      "intervalKm": 80000,
+      "note": "패드 교환 시 디스크 두께 동시 확인"
+    },
+    {
+      "key": "tire",
+      "name": "타이어 교환 (1개)",
+      "totalMin": 90000,
+      "totalMax": 270000,
+      "partsMin": 80000,
+      "partsMax": 250000,
+      "laborMin": 10000,
+      "laborMax": 20000,
+      "intervalKm": 50000,
+      "note": "사이즈·브랜드 편차 큼. 얼라인먼트 별도 (3~5만원)"
+    },
+    {
+      "key": "battery12v",
+      "name": "12V 배터리 교환",
+      "totalMin": 90000,
+      "totalMax": 220000,
+      "partsMin": 80000,
+      "partsMax": 200000,
+      "laborMin": 10000,
+      "laborMax": 20000,
+      "intervalMonths": 48,
+      "note": "무부하 전압 12.5V 이하 시 교환 검토"
+    },
+    {
+      "key": "airFilter",
+      "name": "에어필터 교환",
+      "totalMin": 20000,
+      "totalMax": 55000,
+      "partsMin": 15000,
+      "partsMax": 40000,
+      "laborMin": 5000,
+      "laborMax": 15000,
+      "intervalKm": 20000,
+      "intervalMonths": 12
+    },
+    {
+      "key": "cabinFilter",
+      "name": "에어컨 필터 교환",
+      "totalMin": 15000,
+      "totalMax": 50000,
+      "partsMin": 10000,
+      "partsMax": 35000,
+      "laborMin": 5000,
+      "laborMax": 15000,
+      "intervalKm": 15000,
+      "intervalMonths": 12
+    },
+    {
+      "key": "sparkPlug",
+      "name": "점화플러그 교환",
+      "totalMin": 50000,
+      "totalMax": 200000,
+      "partsMin": 30000,
+      "partsMax": 150000,
+      "laborMin": 20000,
+      "laborMax": 50000,
+      "intervalKm": 60000,
+      "note": "이리듐 기준 상단, 일반 기준 하단"
+    }
+  ]
+}
