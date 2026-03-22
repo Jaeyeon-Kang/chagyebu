@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getGuideBySlug, GUIDE_SLUGS } from "@/data/guides";
 import { NextQuestions } from "@/components/layout/NextQuestions";
 
+const BASE_URL = "https://www.chabiseo.com";
+
 export async function generateStaticParams() {
   return GUIDE_SLUGS.map((slug) => ({ slug }));
 }
@@ -16,7 +18,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const guide = getGuideBySlug(slug);
   if (!guide) return { title: "가이드를 찾을 수 없습니다" };
-  return { title: guide.title, description: guide.description };
+  return {
+    title: guide.title,
+    description: guide.description,
+    openGraph: {
+      title: guide.title,
+      description: guide.description,
+      type: "article",
+      modifiedTime: guide.updatedAt,
+    },
+  };
 }
 
 function renderBody(body: string) {
@@ -59,72 +70,109 @@ export default async function GuidePage({
     .map((s) => getGuideBySlug(s))
     .filter(Boolean) as NonNullable<ReturnType<typeof getGuideBySlug>>[];
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    dateModified: guide.updatedAt,
+    author: { "@type": "Organization", name: "차비서", url: BASE_URL },
+    publisher: { "@type": "Organization", name: "차비서", url: BASE_URL },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/guide/${slug}` },
+  };
+
+  const faqJsonLd = guide.faq && guide.faq.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: guide.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      }
+    : null;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "홈", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "가이드", item: `${BASE_URL}/category/maintaining` },
+      { "@type": "ListItem", position: 3, name: guide.title, item: `${BASE_URL}/guide/${slug}` },
+    ],
+  };
+
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 space-y-8">
-      {/* 헤더 */}
-      <header className="space-y-2">
-        <p className="text-sm text-blue-600 font-medium">가이드</p>
-        <h1 className="text-2xl font-bold text-slate-900 leading-snug">{guide.title}</h1>
-        <p className="text-[15px] text-slate-500 leading-relaxed">{guide.description}</p>
-        <p className="text-xs text-slate-400">마지막 업데이트: {guide.updatedAt}</p>
-      </header>
-
-      {/* 관련 계산기 CTA */}
-      {guide.relatedCalculator && (
-        <Link
-          href={guide.relatedCalculator.href}
-          className="flex items-center justify-between bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 hover:border-blue-400 hover:bg-blue-100 transition-colors group"
-        >
-          <span className="text-sm text-blue-700 group-hover:text-blue-800 font-medium">
-            🧮 {guide.relatedCalculator.label}
-          </span>
-          <span className="text-blue-400 group-hover:text-blue-600">→</span>
-        </Link>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-      {/* 본문 */}
-      <article className="space-y-8">
-        {guide.sections.map((section, i) => (
-          <section key={i} className="space-y-3">
-            {section.heading && (
-              <h2 className="text-lg font-bold text-slate-900 border-l-2 border-blue-500 pl-3">
-                {section.heading}
-              </h2>
-            )}
+      <div className="mx-auto max-w-3xl px-4 py-8 space-y-8">
+        <header className="space-y-2">
+          <p className="text-sm text-blue-600 font-medium">가이드</p>
+          <h1 className="text-2xl font-bold text-slate-900 leading-snug">{guide.title}</h1>
+          <p className="text-[15px] text-slate-500 leading-relaxed">{guide.description}</p>
+          <p className="text-xs text-slate-400">마지막 업데이트: {guide.updatedAt}</p>
+        </header>
+
+        {guide.relatedCalculator && (
+          <Link
+            href={guide.relatedCalculator.href}
+            className="flex items-center justify-between bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 hover:border-blue-400 hover:bg-blue-100 transition-colors group"
+          >
+            <span className="text-sm text-blue-700 group-hover:text-blue-800 font-medium">
+              🧮 {guide.relatedCalculator.label}
+            </span>
+            <span className="text-blue-400 group-hover:text-blue-600">→</span>
+          </Link>
+        )}
+
+        <article className="space-y-8">
+          {guide.sections.map((section, i) => (
+            <section key={i} className="space-y-3">
+              {section.heading && (
+                <h2 className="text-lg font-bold text-slate-900 border-l-2 border-blue-500 pl-3">
+                  {section.heading}
+                </h2>
+              )}
+              <div className="space-y-3">
+                {renderBody(section.body)}
+              </div>
+            </section>
+          ))}
+        </article>
+
+        {guide.faq && guide.faq.length > 0 && (
+          <section className="space-y-3">
+            <h2 className="text-base font-bold text-slate-900 border-l-2 border-blue-500 pl-3">
+              자주 묻는 질문
+            </h2>
             <div className="space-y-3">
-              {renderBody(section.body)}
+              {guide.faq.map((item, i) => (
+                <div key={i} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-2">
+                  <p className="text-sm font-semibold text-slate-800">Q. {item.q}</p>
+                  <p className="text-[15px] text-slate-600 leading-relaxed">{item.a}</p>
+                </div>
+              ))}
             </div>
           </section>
-        ))}
-      </article>
+        )}
 
-      {/* FAQ */}
-      {guide.faq && guide.faq.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-base font-bold text-slate-900 border-l-2 border-blue-500 pl-3">
-            자주 묻는 질문
-          </h2>
-          <div className="space-y-3">
-            {guide.faq.map((item, i) => (
-              <div key={i} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-2">
-                <p className="text-sm font-semibold text-slate-800">Q. {item.q}</p>
-                <p className="text-[15px] text-slate-600 leading-relaxed">{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {relatedGuides.length > 0 && (
-        <NextQuestions
-          title="관련 가이드"
-          questions={relatedGuides.map((g) => ({
-            text: g.title,
-            href: `/guide/${g.slug}`,
-            type: "guide" as const,
-          }))}
-        />
-      )}
-    </div>
+        {relatedGuides.length > 0 && (
+          <NextQuestions
+            title="관련 가이드"
+            questions={relatedGuides.map((g) => ({
+              text: g.title,
+              href: `/guide/${g.slug}`,
+              type: "guide" as const,
+            }))}
+          />
+        )}
+      </div>
+    </>
   );
 }
