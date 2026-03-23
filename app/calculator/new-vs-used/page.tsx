@@ -15,8 +15,7 @@ export default function NewVsUsedPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "홈", item: BASE_URL },
-      { "@type": "ListItem", position: 2, name: "계산기", item: `${BASE_URL}/calculator/new-vs-used` },
-      { "@type": "ListItem", position: 3, name: "신차 vs 중고차 총소유비 비교", item: `${BASE_URL}/calculator/new-vs-used` },
+      { "@type": "ListItem", position: 2, name: "신차 vs 중고차 총소유비 비교", item: `${BASE_URL}/calculator/new-vs-used` },
     ],
   };
 

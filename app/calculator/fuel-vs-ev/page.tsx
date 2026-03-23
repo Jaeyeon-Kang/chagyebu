@@ -15,8 +15,7 @@ export default function FuelVsEvPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "홈", item: BASE_URL },
-      { "@type": "ListItem", position: 2, name: "계산기", item: `${BASE_URL}/calculator/fuel-vs-ev` },
-      { "@type": "ListItem", position: 3, name: "연료비 비교 계산기", item: `${BASE_URL}/calculator/fuel-vs-ev` },
+      { "@type": "ListItem", position: 2, name: "연료비 비교 계산기", item: `${BASE_URL}/calculator/fuel-vs-ev` },
     ],
   };
 

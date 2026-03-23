@@ -15,8 +15,7 @@ export default function FirstCarBudgetPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "홈", item: BASE_URL },
-      { "@type": "ListItem", position: 2, name: "계산기", item: `${BASE_URL}/calculator/first-car-budget` },
-      { "@type": "ListItem", position: 3, name: "첫차 총예산 계산기", item: `${BASE_URL}/calculator/first-car-budget` },
+      { "@type": "ListItem", position: 2, name: "첫차 총예산 계산기", item: `${BASE_URL}/calculator/first-car-budget` },
     ],
   };
 
