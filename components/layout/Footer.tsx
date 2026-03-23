@@ -6,6 +6,8 @@ export function Footer() {
       <div className="mx-auto max-w-3xl space-y-4">
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-400">
           <Link href="/about" className="hover:text-slate-600 transition-colors">소개</Link>
+          <Link href="/sources" className="hover:text-slate-600 transition-colors">출처</Link>
+          <Link href="/update-log" className="hover:text-slate-600 transition-colors">업데이트 기록</Link>
           <Link href="/privacy" className="hover:text-slate-600 transition-colors">개인정보처리방침</Link>
           <Link href="/disclaimer" className="hover:text-slate-600 transition-colors">면책고지</Link>
         </div>
