@@ -18,7 +18,7 @@ export const GUIDES: Guide[] = [
     description:
       "합성유와 광유는 교체주기가 다릅니다. 가혹 조건이 뭔지, 터보 차량은 왜 더 자주 갈아야 하는지까지 정리했습니다.",
     category: "maintaining",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
+    relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["brake-pad-signal", "tire-timing", "annual-budget-guide"],
     updatedAt: "2026-03-22",
     sections: [
@@ -59,7 +59,7 @@ export const GUIDES: Guide[] = [
     description:
       "마모 경고음, 제동 거리 증가, 브레이크 떨림. 이 신호들이 나타나면 패드 교체를 검토할 시점입니다. 비용 범위와 앞뒤 교환 주기 차이도 정리했습니다.",
     category: "maintaining",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
+    relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "tire-timing", "mechanic-checklist"],
     updatedAt: "2026-03-22",
     sections: [
@@ -96,7 +96,7 @@ export const GUIDES: Guide[] = [
     description:
       "트레드 깊이 1.6mm가 법적 기준이지만, 3mm부터 이미 제동 거리가 늘어납니다. 시각적으로 교체 시점을 판단하는 방법과 비용 범위를 정리했습니다.",
     category: "maintaining",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
+    relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["brake-pad-signal", "engine-oil-interval", "annual-budget-guide"],
     updatedAt: "2026-03-22",
     sections: [
@@ -133,7 +133,7 @@ export const GUIDES: Guide[] = [
     description:
       "배터리는 보통 3~5년이 수명입니다. 시동 느려짐, 헤드라이트 어두움 같은 신호를 놓치지 마세요. 교체 비용과 셀프 점검법도 정리했습니다.",
     category: "maintaining",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
+    relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "mechanic-checklist", "first-car-hidden-costs"],
     updatedAt: "2026-03-22",
     sections: [
@@ -482,7 +482,7 @@ export const GUIDES: Guide[] = [
     description:
       "비 오는 날 와이퍼가 제대로 닦이지 않으면 시야 확보가 어렵습니다. 교체 신호와 종류별 비용을 정리했습니다.",
     category: "maintaining",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
+    relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "battery-timing", "mechanic-checklist"],
     updatedAt: "2026-03-22",
     sections: [
