@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const NAV = [
   { href: "/calculator/first-car-budget", label: "첫차 실지출" },
   { href: "/calculator/fuel-vs-ev", label: "내연기관 vs EV" },
-  { href: "/category/maintaining", label: "정비비 단가표" },
+  { href: "/category/maintaining", label: "소모품·정비" },
 ];
 
 export function Header() {
