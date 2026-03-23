@@ -33,50 +33,48 @@ export function NewVsUsedCalc() {
   const [usedPrice, setUsedPrice] = useState(20000000);
   const [usedAge, setUsedAge] = useState(3);
   const [holdYears, setHoldYears] = useState(5);
-  const [result, setResult] = useState<CompareResult | null>(null);
+  const calcResult = (np: number, up: number, ua: number, hy: number): CompareResult => {
+    const newDepreciation = calcDepreciation(np, hy, true);
+    const usedDepreciation = calcDepreciation(up, hy, false);
+    const newTax = Math.round(np * 0.07);
+    const newInsurance = 900000 * hy;
+    const newMaintenance = 500000 * hy;
+    const usedTax = Math.round(up * 0.07);
+    const usedInsurance = 650000 * hy;
+    const usedMaintenance = (500000 + ua * 80000) * hy;
+    const newTotalCost = newDepreciation + newTax + newInsurance + newMaintenance;
+    const usedTotalCost = usedDepreciation + usedTax + usedInsurance + usedMaintenance;
+    const diff = Math.abs(newTotalCost - usedTotalCost);
+    const threshold = Math.min(newTotalCost, usedTotalCost) * 0.05;
+    let winner: CompareResult["winner"];
+    if (diff < threshold) winner = "비슷함";
+    else if (newTotalCost < usedTotalCost) winner = "신차";
+    else winner = "중고차";
+    return {
+      newTotalCost, usedTotalCost, newDepreciation, usedDepreciation, winner, diff,
+      assumptions: [
+        `신차 ${hy}년 보유 기준 감가: 첫해 15%, 이후 연 9%`,
+        `중고차(${ua}년식) ${hy}년 보유 기준 감가: 연 10%`,
+        `보험료: 신차 연 90만원 / 중고차 연 65만원 추정`,
+        `정비비: 신차 연 50만원 / 중고차 차령에 따라 연 ${fmt(500000 + ua * 80000)}원 추정`,
+        "취득세: 비영업용 기준 7% 적용",
+        "실제 감가는 차종·주행거리·사고이력에 따라 다릅니다",
+      ],
+    };
+  };
+
+  const [result, setResult] = useState<CompareResult>(() => calcResult(newPrice, usedPrice, usedAge, holdYears));
 
   useEffect(() => {
     const id = setTimeout(() => {
-      const newDepreciation = calcDepreciation(newPrice, holdYears, true);
-      const usedDepreciation = calcDepreciation(usedPrice, holdYears, false);
-
-      const newTax = Math.round(newPrice * 0.07);
-      const newInsurance = 900000 * holdYears;
-      const newMaintenance = 500000 * holdYears;
-
-      const usedTax = Math.round(usedPrice * 0.07);
-      const usedInsurance = 650000 * holdYears;
-      const usedMaintenance = (500000 + usedAge * 80000) * holdYears;
-
-      const newTotalCost = newDepreciation + newTax + newInsurance + newMaintenance;
-      const usedTotalCost = usedDepreciation + usedTax + usedInsurance + usedMaintenance;
-
-      const diff = Math.abs(newTotalCost - usedTotalCost);
-      const threshold = Math.min(newTotalCost, usedTotalCost) * 0.05;
-
-      let winner: CompareResult["winner"];
-      if (diff < threshold) winner = "비슷함";
-      else if (newTotalCost < usedTotalCost) winner = "신차";
-      else winner = "중고차";
-
-      setResult({
-        newTotalCost, usedTotalCost, newDepreciation, usedDepreciation, winner, diff,
-        assumptions: [
-          `신차 ${holdYears}년 보유 기준 감가: 첫해 15%, 이후 연 9%`,
-          `중고차(${usedAge}년식) ${holdYears}년 보유 기준 감가: 연 10%`,
-          `보험료: 신차 연 90만원 / 중고차 연 65만원 추정`,
-          `정비비: 신차 연 50만원 / 중고차 차령에 따라 연 ${fmt(500000 + usedAge * 80000)}원 추정`,
-          "취득세: 비영업용 기준 7% 적용",
-          "실제 감가는 차종·주행거리·사고이력에 따라 다릅니다",
-        ],
-      });
+      setResult(calcResult(newPrice, usedPrice, usedAge, holdYears));
     }, 150);
     return () => clearTimeout(id);
   }, [newPrice, usedPrice, usedAge, holdYears]);
 
-  const newTotal  = useCountUp(result?.newTotalCost ?? 0);
-  const usedTotal = useCountUp(result?.usedTotalCost ?? 0);
-  const diffVal   = useCountUp(result?.diff ?? 0);
+  const newTotal  = useCountUp(result.newTotalCost);
+  const usedTotal = useCountUp(result.usedTotalCost);
+  const diffVal   = useCountUp(result.diff);
 
   const winnerStyle: Record<string, string> = {
     "신차":   "text-blue-700 border-blue-200 bg-blue-50",
@@ -148,8 +146,7 @@ export function NewVsUsedCalc() {
         </div>
       </div>
 
-      {result && (
-        <div className="space-y-4">
+      <div className="space-y-4">
           <div className={`border rounded-2xl p-5 ${winnerStyle[result.winner]}`}>
             <p className="text-xs text-slate-500 mb-1">{holdYears}년 기준 유리한 선택</p>
             <p className="text-3xl font-bold">{result.winner}</p>
@@ -182,7 +179,6 @@ export function NewVsUsedCalc() {
 
           <AssumptionsAccordion assumptions={result.assumptions} />
         </div>
-      )}
     </div>
   );
 }

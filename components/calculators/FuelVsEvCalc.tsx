@@ -19,38 +19,40 @@ interface CompareRow {
 export function FuelVsEvCalc() {
   const [monthlyMileage, setMonthlyMileage] = useState(1200);
   const [homeChargeRatio, setHomeChargeRatio] = useState(70);
-  const [result, setResult] = useState<CompareRow[] | null>(null);
+  const calcRows = (mileage: number, chargeRatio: number): CompareRow[] => {
+    const safeDiv = (m: number, eff: number) => eff > 0 ? m / eff : 0;
+    const gasMin = Math.round(safeDiv(mileage, DEFAULT_EFF.gasoline * 1.1) * fuelDefaults.gasoline);
+    const gasMax = Math.round(safeDiv(mileage, DEFAULT_EFF.gasoline * 0.9) * fuelDefaults.gasoline);
+    const hybMin = Math.round(safeDiv(mileage, DEFAULT_EFF.hybrid * 1.1) * fuelDefaults.gasoline);
+    const hybMax = Math.round(safeDiv(mileage, DEFAULT_EFF.hybrid * 0.9) * fuelDefaults.gasoline);
+    const kwh = safeDiv(mileage, DEFAULT_EFF.ev);
+    const homeR = chargeRatio / 100;
+    const publicR = 1 - homeR;
+    const evMin = Math.round(kwh * (homeR * fuelDefaults.ev_home_slow_night + publicR * fuelDefaults.ev_public_slow));
+    const evMax = Math.round(kwh * (homeR * fuelDefaults.ev_home_slow + publicR * fuelDefaults.ev_public_fast_50kw));
+    return [
+      { label: "가솔린", monthlyMin: gasMin, monthlyMax: gasMax, barColor: "bg-orange-400", textColor: "text-orange-600" },
+      { label: "하이브리드", monthlyMin: hybMin, monthlyMax: hybMax, barColor: "bg-amber-400", textColor: "text-amber-600" },
+      { label: "전기차(EV)", monthlyMin: evMin, monthlyMax: evMax, barColor: "bg-blue-500", textColor: "text-blue-600" },
+    ];
+  };
+
+  const [result, setResult] = useState<CompareRow[]>(() => calcRows(monthlyMileage, homeChargeRatio));
 
   useEffect(() => {
     const id = setTimeout(() => {
-      const safeDiv = (mileage: number, eff: number) => eff > 0 ? mileage / eff : 0;
-      const gasMin = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.gasoline * 1.1) * fuelDefaults.gasoline);
-      const gasMax = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.gasoline * 0.9) * fuelDefaults.gasoline);
-      const hybMin = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.hybrid * 1.1) * fuelDefaults.gasoline);
-      const hybMax = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.hybrid * 0.9) * fuelDefaults.gasoline);
-
-      const kwh = safeDiv(monthlyMileage, DEFAULT_EFF.ev);
-      const homeRatio = homeChargeRatio / 100;
-      const publicRatio = 1 - homeRatio;
-      const evMin = Math.round(kwh * (homeRatio * fuelDefaults.ev_home_slow_night + publicRatio * fuelDefaults.ev_public_slow));
-      const evMax = Math.round(kwh * (homeRatio * fuelDefaults.ev_home_slow + publicRatio * fuelDefaults.ev_public_fast_50kw));
-
-      setResult([
-        { label: "가솔린", monthlyMin: gasMin, monthlyMax: gasMax, barColor: "bg-orange-400", textColor: "text-orange-600" },
-        { label: "하이브리드", monthlyMin: hybMin, monthlyMax: hybMax, barColor: "bg-amber-400", textColor: "text-amber-600" },
-        { label: "전기차(EV)", monthlyMin: evMin, monthlyMax: evMax, barColor: "bg-blue-500", textColor: "text-blue-600" },
-      ]);
+      setResult(calcRows(monthlyMileage, homeChargeRatio));
     }, 150);
     return () => clearTimeout(id);
   }, [monthlyMileage, homeChargeRatio]);
 
   // 6 countup hooks — always called unconditionally
-  const gas0 = useCountUp(result?.[0]?.monthlyMin ?? 0);
-  const gas1 = useCountUp(result?.[0]?.monthlyMax ?? 0);
-  const hyb0 = useCountUp(result?.[1]?.monthlyMin ?? 0);
-  const hyb1 = useCountUp(result?.[1]?.monthlyMax ?? 0);
-  const ev0  = useCountUp(result?.[2]?.monthlyMin ?? 0);
-  const ev1  = useCountUp(result?.[2]?.monthlyMax ?? 0);
+  const gas0 = useCountUp(result[0].monthlyMin);
+  const gas1 = useCountUp(result[0].monthlyMax);
+  const hyb0 = useCountUp(result[1].monthlyMin);
+  const hyb1 = useCountUp(result[1].monthlyMax);
+  const ev0  = useCountUp(result[2].monthlyMin);
+  const ev1  = useCountUp(result[2].monthlyMax);
   const countUpPairs = [[gas0, gas1], [hyb0, hyb1], [ev0, ev1]];
 
   return (
@@ -90,8 +92,7 @@ export function FuelVsEvCalc() {
         </div>
       </div>
 
-      {result && (
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-5">
+      <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-5">
           <h3 className="text-base font-semibold text-slate-800">월 연료·충전비 비교</h3>
 
           {result.map((row, i) => {
@@ -121,7 +122,6 @@ export function FuelVsEvCalc() {
             충전요금: 환경부·한국전력 공시 기준 (2026-03-22).
           </p>
         </div>
-      )}
     </div>
   );
 }

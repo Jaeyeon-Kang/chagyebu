@@ -25,7 +25,9 @@ export function FirstCarBudgetCalc() {
   const [fuelType, setFuelType] = useState<FuelType>("gasoline");
   const [monthlyMileage, setMonthlyMileage] = useState(1200);
   const [hasParking, setHasParking] = useState(true);
-  const [result, setResult] = useState<FirstCarBudgetResult | null>(null);
+  const [result, setResult] = useState<FirstCarBudgetResult>(() =>
+    calcFirstCarBudget({ carPrice, fuelType, monthlyMileageKm: monthlyMileage, hasParking }),
+  );
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -34,10 +36,10 @@ export function FirstCarBudgetCalc() {
     return () => clearTimeout(id);
   }, [carPrice, fuelType, monthlyMileage, hasParking]);
 
-  const yearMin = useCountUp(result?.firstYearTotal.min ?? 0);
-  const yearMax = useCountUp(result?.firstYearTotal.max ?? 0);
-  const monthMin = useCountUp(result?.monthlyTotal.min ?? 0);
-  const monthMax = useCountUp(result?.monthlyTotal.max ?? 0);
+  const yearMin = useCountUp(result.firstYearTotal.min);
+  const yearMax = useCountUp(result.firstYearTotal.max);
+  const monthMin = useCountUp(result.monthlyTotal.min);
+  const monthMax = useCountUp(result.monthlyTotal.max);
 
   return (
     <div className="space-y-6">
@@ -117,8 +119,7 @@ export function FirstCarBudgetCalc() {
         </div>
       </div>
 
-      {result && (
-        <div className="space-y-4">
+      <div className="space-y-4">
           <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 space-y-3">
             <p className="text-xs text-slate-500">취득 포함 1년차 총비용</p>
             <p className="text-3xl font-bold text-slate-900 tabular-nums leading-tight">
@@ -155,7 +156,6 @@ export function FirstCarBudgetCalc() {
             본 사이트는 해당 결과에 대한 법적 책임을 지지 않습니다.
           </p>
         </div>
-      )}
     </div>
   );
 }
