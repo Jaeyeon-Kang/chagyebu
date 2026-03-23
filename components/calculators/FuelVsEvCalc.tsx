@@ -23,18 +23,17 @@ export function FuelVsEvCalc() {
 
   useEffect(() => {
     const id = setTimeout(() => {
-      const f = fuelDefaults as unknown as Record<string, number>;
+      const safeDiv = (mileage: number, eff: number) => eff > 0 ? mileage / eff : 0;
+      const gasMin = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.gasoline * 1.1) * fuelDefaults.gasoline);
+      const gasMax = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.gasoline * 0.9) * fuelDefaults.gasoline);
+      const hybMin = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.hybrid * 1.1) * fuelDefaults.gasoline);
+      const hybMax = Math.round(safeDiv(monthlyMileage, DEFAULT_EFF.hybrid * 0.9) * fuelDefaults.gasoline);
 
-      const gasMin = Math.round((monthlyMileage / (DEFAULT_EFF.gasoline * 1.1)) * f.gasoline);
-      const gasMax = Math.round((monthlyMileage / (DEFAULT_EFF.gasoline * 0.9)) * f.gasoline);
-      const hybMin = Math.round((monthlyMileage / (DEFAULT_EFF.hybrid * 1.1)) * f.gasoline);
-      const hybMax = Math.round((monthlyMileage / (DEFAULT_EFF.hybrid * 0.9)) * f.gasoline);
-
-      const kwh = monthlyMileage / DEFAULT_EFF.ev;
+      const kwh = safeDiv(monthlyMileage, DEFAULT_EFF.ev);
       const homeRatio = homeChargeRatio / 100;
       const publicRatio = 1 - homeRatio;
-      const evMin = Math.round(kwh * (homeRatio * f.ev_home_slow_night + publicRatio * f.ev_public_slow));
-      const evMax = Math.round(kwh * (homeRatio * f.ev_home_slow + publicRatio * f.ev_public_fast_50kw));
+      const evMin = Math.round(kwh * (homeRatio * fuelDefaults.ev_home_slow_night + publicRatio * fuelDefaults.ev_public_slow));
+      const evMax = Math.round(kwh * (homeRatio * fuelDefaults.ev_home_slow + publicRatio * fuelDefaults.ev_public_fast_50kw));
 
       setResult([
         { label: "가솔린", monthlyMin: gasMin, monthlyMax: gasMax, barColor: "bg-orange-400", textColor: "text-orange-600" },

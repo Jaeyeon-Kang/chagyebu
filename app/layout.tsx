@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CookieConsent } from "@/components/CookieConsent";
 import { BASE_URL } from "@/lib/site-url";
 import "./globals.css";
 
@@ -46,24 +46,12 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css"
         />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7755590920394652"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
-        <script dangerouslySetInnerHTML={{ __html: `if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(r=>{for(let s of r)s.unregister()})}` }} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-TY81JM0FMP" strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-TY81JM0FMP');
-        `}</Script>
+        <CookieConsent />
       </body>
     </html>
   );

@@ -30,36 +30,39 @@ const DEFAULT_EFFICIENCY: Record<FuelType, number> = {
   lpg: 10.0,
 };
 
-// Fix #4: EV는 집충전 70% + 외부완속 30% 혼합 단가
+// EV는 집충전 70% + 외부완속 30% 혼합 단가
 function getFuelUnitPrice(fuelType: FuelType): number {
-  const m = fuelDefaults as unknown as Record<string, number>;
   if (fuelType === "ev") {
-    return Math.round(m.ev_home_slow * 0.7 + m.ev_public_slow * 0.3);
+    return Math.round(fuelDefaults.ev_home_slow * 0.7 + fuelDefaults.ev_public_slow * 0.3);
   }
-  const map: Record<FuelType, string> = {
-    gasoline: "gasoline",
-    diesel: "diesel",
-    hybrid: "gasoline",
-    ev: "ev_home_slow", // unreachable — EV handled above
-    lpg: "lpg",
+  const priceByFuel: Record<Exclude<FuelType, "ev">, number> = {
+    gasoline: fuelDefaults.gasoline,
+    diesel: fuelDefaults.diesel,
+    hybrid: fuelDefaults.gasoline,
+    lpg: fuelDefaults.lpg,
   };
-  return m[map[fuelType]];
+  return priceByFuel[fuelType as Exclude<FuelType, "ev">];
 }
 
 export function calcFirstCarBudget(input: FirstCarBudgetInput): FirstCarBudgetResult {
-  const { carPrice, fuelType, monthlyMileageKm, hasParking } = input;
+  const carPrice = Math.max(0, input.carPrice);
+  const fuelType = input.fuelType;
+  const monthlyMileageKm = Math.max(0, input.monthlyMileageKm);
+  const hasParking = input.hasParking;
 
-  // Fix #1: EV 취득세 — 완전 면제 아님, 최대 140만원 감면
-  const baseRate = (taxRules.acquisition_tax as { non_commercial: number }).non_commercial;
+  // EV 취득세 — 최대 감면 한도를 JSON에서 읽음
+  const acqTax = taxRules.acquisition_tax;
+  const baseRate = acqTax.non_commercial;
+  const evReductionCap = acqTax.ev_reduction_cap;
   const acquisitionTax =
     fuelType === "ev"
-      ? Math.max(0, Math.round(carPrice * baseRate) - 1_400_000)
+      ? Math.max(0, Math.round(carPrice * baseRate) - evReductionCap)
       : Math.round(carPrice * baseRate);
 
   // Fix #3: 공채 실질 비용 — 취득세와 통합된 등록세가 아니라 국민주택채권 할인 손실
   // 서울 기준 차량가액 4% 매입, 즉시 매도 시 약 20% 손실 → 실질 0.8% 수준
   const registrationFee = Math.round(
-    carPrice * (taxRules.registration_fee_rate as number)
+    carPrice * taxRules.registration_fee_rate
   );
 
   // 첫해 보험 추정
@@ -73,8 +76,8 @@ export function calcFirstCarBudget(input: FirstCarBudgetInput): FirstCarBudgetRe
   const annualMileage = monthlyMileageKm * 12;
   const unitPrice = getFuelUnitPrice(fuelType);
   const efficiency = DEFAULT_EFFICIENCY[fuelType];
-  const fuelMin = Math.round((annualMileage / (efficiency * 1.1)) * unitPrice);
-  const fuelMax = Math.round((annualMileage / (efficiency * 0.9)) * unitPrice);
+  const fuelMin = efficiency > 0 ? Math.round((annualMileage / (efficiency * 1.1)) * unitPrice) : 0;
+  const fuelMax = efficiency > 0 ? Math.round((annualMileage / (efficiency * 0.9)) * unitPrice) : 0;
   const annualFuel: CostRange = { min: fuelMin, max: fuelMax, unit: "원/년" };
 
   // 연간 소모품 (km당 15~35원)

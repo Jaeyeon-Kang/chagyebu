@@ -5,8 +5,8 @@
   "acquisition_tax": {
     "_comment": "취득세율 (차 가격 기준)",
     "non_commercial": 0.07,
-    "ev_reduction": 0.0,
-    "_note": "EV는 취득세 한시 면제(정책 변경 확인 필요). 비영업용 기준 7%."
+    "ev_reduction_cap": 1400000,
+    "_note": "EV는 취득세 최대 140만원 감면(2026년 기준, 정책 변경 시 업데이트). 비영업용 기준 7%."
   },
   "registration_fee_rate": 0.008,
   "annual_tax_per_cc": {
