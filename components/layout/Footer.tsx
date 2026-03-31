@@ -11,6 +11,7 @@ export function Footer() {
           <Link href="/privacy" className="hover:text-slate-600 transition-colors">개인정보처리방침</Link>
           <Link href="/disclaimer" className="hover:text-slate-600 transition-colors">면책고지</Link>
           <Link href="/terms" className="hover:text-slate-600 transition-colors">이용약관</Link>
+          <Link href="/contact" className="hover:text-slate-600 transition-colors">문의하기</Link>
         </div>
         <p className="text-xs text-slate-400 leading-relaxed">
           차계부의 수치는 제조사 기준, 공공 통계, 서비스센터 공시가를 바탕으로 한 예상 범위입니다.
