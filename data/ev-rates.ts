@@ -1,4 +1,4 @@
-// EV 충전 요금 기준 (2026년 3월 기준 한국전력 공시 요금 참고)
+// EV 충전 요금 기준 (2026년 4월 기준 한국전력 공시 요금 참고)
 // 출처: 한국전력공사, 환경부 전기차 충전 인프라 정보 시스템
 
 export const EV_CHARGE_RATES = {
@@ -22,7 +22,7 @@ export const EV_CHARGE_RATES = {
 // 휘발유 비교 기준 (한국석유공사 오피넷 참고)
 export const GASOLINE_REFERENCE = {
   pricePerLiter: 1760,     // 원/L (2026년 4월 전국 평균)
-  efficiencyKmPerLiter: 12, // km/L (중형 세단 기준)
+  efficiencyKmPerLiter: 12.5, // km/L (중형 세단 기준)
   updatedAt: "2026-04-03",
 };
 
