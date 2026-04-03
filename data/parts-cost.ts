@@ -95,4 +95,4 @@ export const PARTS_LIST = Object.entries(PARTS_COST).map(([key, val]) => ({
   ...val,
 }));
 
-export const UPDATED_AT = "2026-03-22";
+export const UPDATED_AT = "2026-04-03";

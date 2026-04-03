@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "문의하기 — 차계부",
+  title: "문의하기",
   description: "계산 오류 제보, 기능 제안, 기타 문의를 남겨주세요.",
   alternates: {
     canonical: "https://chagyebu.co.kr/contact",

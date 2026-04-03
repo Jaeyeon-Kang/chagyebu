@@ -1,6 +1,6 @@
 {
   "_comment": "취득세·자동차세 기준 — 세법 개정 시 업데이트 필요",
-  "_updatedAt": "2026-03-22",
+  "_updatedAt": "2026-04-03",
   "_source": "지방세법, 국토교통부",
   "acquisition_tax": {
     "_comment": "취득세율 (차 가격 기준)",

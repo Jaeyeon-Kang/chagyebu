@@ -140,4 +140,4 @@ export const EV_MAINTENANCE: MaintenanceItem[] = [
   },
 ];
 
-export const UPDATED_AT = "2026-03-22";
+export const UPDATED_AT = "2026-04-03";

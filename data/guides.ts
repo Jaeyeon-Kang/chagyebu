@@ -20,7 +20,7 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["brake-pad-signal", "tire-timing", "annual-budget-guide"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "엔진오일 교체주기는 많은 차주들이 헷갈리는 항목입니다. '1만km마다'라는 말을 많이 듣지만, 이 숫자는 사용하는 오일 종류와 운행 환경에 따라 크게 달라집니다.",
@@ -61,7 +61,7 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "tire-timing", "mechanic-checklist"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "브레이크패드는 안전에 직결되는 소모품입니다. 외부에서 잘 보이지 않아 교체 시점을 놓치기 쉽습니다. 다음 신호가 나타나면 바로 점검하세요.",
@@ -98,7 +98,7 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["brake-pad-signal", "engine-oil-interval", "annual-budget-guide"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "타이어는 차량과 노면의 유일한 접점입니다. 마모된 타이어는 제동 거리를 크게 늘리고 빗길에서 수막현상(하이드로플래닝) 위험을 높입니다.",
@@ -135,7 +135,7 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "mechanic-checklist", "first-car-hidden-costs"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "자동차 12V 배터리는 시동 시 대전류를 공급하고, 엔진이 꺼진 상태에서 전장 계통을 유지합니다. 방전되면 시동 자체가 걸리지 않습니다.",
@@ -176,7 +176,7 @@ export const GUIDES: Guide[] = [
     category: "buying",
     relatedCalculator: { label: "첫차 총예산 직접 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "battery-timing", "annual-budget-guide"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "처음 차를 살 때 많은 사람이 차값과 할부 이자만 계산합니다. 하지만 실제로는 계약 직후부터 여러 비용이 발생합니다. 미리 파악하면 예산을 정확히 잡을 수 있습니다.",
@@ -232,7 +232,7 @@ export const GUIDES: Guide[] = [
     category: "buying",
     relatedCalculator: { label: "신차 vs 중고차 총소유비 비교", href: "/calculator/new-vs-used" },
     relatedGuides: ["first-car-hidden-costs", "long-term-car-cost", "mechanic-checklist"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "중고차를 살 때 많은 사람이 구매가만 봅니다. 하지만 중고차의 실제 비용은 앞으로 들어갈 정비비·수리비입니다. 이 항목들을 미리 파악하면 더 나은 선택을 할 수 있습니다.",
@@ -274,7 +274,7 @@ export const GUIDES: Guide[] = [
     category: "ev",
     relatedCalculator: { label: "연료비 비교 계산기 (EV vs 가솔린)", href: "/calculator/fuel-vs-ev" },
     relatedGuides: ["hybrid-advantage", "first-car-hidden-costs"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "EV 홍보는 넘쳐나지만 '내가 EV를 타면 손해인 경우'는 잘 알려지지 않습니다. EV 구매 전에 아래 유형에 해당하는지 먼저 확인하세요.",
@@ -316,7 +316,7 @@ export const GUIDES: Guide[] = [
     category: "ev",
     relatedCalculator: { label: "연료비 비교 계산기", href: "/calculator/fuel-vs-ev" },
     relatedGuides: ["ev-not-for-everyone", "first-car-hidden-costs"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "하이브리드는 EV처럼 화려하지 않고, 순수 가솔린처럼 단순하지도 않습니다. 하지만 특정 조건에서는 두 선택지보다 분명히 유리합니다.",
@@ -358,7 +358,7 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "신차 vs 중고차 총소유비 비교", href: "/calculator/new-vs-used" },
     relatedGuides: ["engine-oil-interval", "brake-pad-signal", "used-car-cost-check"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "차를 5년 이상 타면 보험료는 낮아지고 자동차세는 줄지만, 수리비와 정비비는 서서히 올라가기 시작합니다. 특히 10만km를 넘기면 소모품 교환 주기가 겹치면서 한 해에 100만원 이상 정비비가 몰리는 경우가 생깁니다.",
@@ -400,7 +400,7 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 총예산 계산기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "long-term-car-cost", "brake-pad-signal"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "자동차 유지비는 고정비와 변동비로 나뉩니다. 고정비는 매월 비슷하게 나가지만, 변동비는 예상치 못하게 한 번에 몰립니다. 미리 항목을 파악하면 예산 충격을 줄일 수 있습니다.",
@@ -442,7 +442,7 @@ export const GUIDES: Guide[] = [
     category: "repairing",
     relatedCalculator: { label: "신차 vs 중고차 총소유비", href: "/calculator/new-vs-used" },
     relatedGuides: ["brake-pad-signal", "engine-oil-interval", "annual-budget-guide"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "정비소에서 예상보다 높은 견적을 받으면 판단이 어렵습니다. 미리 기본 지식을 갖추고 가면 불필요한 수리를 피하고 합리적인 결정을 내릴 수 있습니다.",
@@ -484,7 +484,7 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "battery-timing", "mechanic-checklist"],
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
     sections: [
       {
         body: "와이퍼는 교체 비용이 작아 미루기 쉽지만, 비 오는 날 시야에 직접 영향을 주는 안전 부품입니다. 6~12개월마다 점검하는 것을 권장합니다.",
@@ -515,7 +515,7 @@ export const GUIDES: Guide[] = [
     description:
       "쇼크업소버는 천천히 마모되어 교체 시점을 놓치기 쉽습니다. 교체가 필요한 신호와 앞뒤 비용 범위를 정리했습니다.",
     category: "repairing",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/annual-budget" },
+    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["brake-pad-signal", "tire-timing", "mechanic-checklist"],
     updatedAt: "2026-04-03",
     sections: [
@@ -557,7 +557,7 @@ export const GUIDES: Guide[] = [
     description:
       "엔진 에어필터와 실내 에어컨필터는 교체 주기가 다릅니다. 교체 신호와 DIY 가능 여부, 비용까지 정리했습니다.",
     category: "maintaining",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/annual-budget" },
+    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "wiper-timing", "mechanic-checklist"],
     updatedAt: "2026-04-03",
     sections: [
@@ -595,7 +595,7 @@ export const GUIDES: Guide[] = [
     description:
       "교환 시점을 놓치기 쉬운 냉각수입니다. 교체 주기와 이유를 정리했습니다. 미루면 엔진 부식과 과열로 이어질 수 있습니다.",
     category: "maintaining",
-    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/annual-budget" },
+    relatedCalculator: { label: "연간 유지비 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "battery-timing", "mechanic-checklist"],
     updatedAt: "2026-04-03",
     sections: [

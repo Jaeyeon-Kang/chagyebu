@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "출처 및 데이터 기준 | 차계부",
+  title: "출처 및 데이터 기준",
   description: "차계부 계산기와 가이드에서 사용하는 데이터의 출처와 기준을 안내합니다.",
 };
 
