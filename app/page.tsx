@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BLOG_POSTS } from "@/data/blog";
+import { GUIDES } from "@/data/guides";
 
 export const metadata: Metadata = {
   title: "차계부 — 자동차 비용 판단 가이드",
@@ -92,7 +94,7 @@ export default function HomePage() {
           계산기와 가이드로 내 상황에 맞는 적정 비용을 확인하세요.
         </p>
         <div className="flex items-center gap-2 flex-wrap">
-          {["가이드 16개", "계산기 3종", "매월 업데이트"].map((s) => (
+          {[`가이드 ${GUIDES.length}개`, "계산기 3종", "매월 업데이트"].map((s) => (
             <span key={s} className="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
               {s}
             </span>
@@ -171,6 +173,36 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* 최근 글 */}
+      {BLOG_POSTS.length > 0 && (
+        <section className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
+              최근 글
+            </h2>
+            <Link href="/blog" className="text-xs text-blue-500 hover:underline">전체 보기 →</Link>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm divide-y divide-slate-100">
+            {[...BLOG_POSTS]
+              .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+              .slice(0, 3)
+              .map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="flex items-center justify-between px-5 py-3.5 text-[15px] text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors group"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-xs text-slate-400 shrink-0">{post.publishedAt.slice(5)}</span>
+                    <span className="truncate">{post.title}</span>
+                  </div>
+                  <span className="text-slate-400 group-hover:text-blue-500 transition-colors shrink-0 ml-2">→</span>
+                </Link>
+              ))}
+          </div>
+        </section>
+      )}
 
       {/* 면책 조항 */}
       <section className="text-xs text-slate-400 leading-relaxed border-t border-slate-200 pt-8 space-y-2">

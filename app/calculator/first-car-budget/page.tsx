@@ -3,6 +3,11 @@ import Link from "next/link";
 import { FirstCarBudgetCalc } from "@/components/calculators/FirstCarBudgetCalc";
 import { NextQuestions } from "@/components/layout/NextQuestions";
 import { BASE_URL } from "@/lib/site-url";
+import { calcFirstCarBudget } from "@/lib/calc-first-car-budget";
+
+const EX = calcFirstCarBudget({ carPrice: 25_000_000, fuelType: "gasoline", monthlyMileageKm: 1200, hasParking: true });
+const 만 = (n: number) => Math.round(n / 10000).toLocaleString("ko-KR");
+const 만r = (min: number, max: number) => `${만(min)}~${만(max)}`;
 
 export const metadata: Metadata = {
   title: "첫차 총예산 계산기 — 차값 외 숨겨진 비용 포함",
@@ -70,7 +75,7 @@ export default function FirstCarBudgetPage() {
         <header className="space-y-2">
           <div className="flex items-center gap-2 flex-wrap">
             <p className="text-sm text-blue-600 font-medium">계산기</p>
-            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-03 데이터 반영</span>
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-04 데이터 반영</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">첫차 총예산 계산기</h1>
           <p className="text-[15px] text-slate-600 leading-relaxed">
@@ -102,12 +107,12 @@ export default function FirstCarBudgetPage() {
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-[15px] text-slate-600 leading-relaxed">
             <p className="font-semibold text-slate-800">아반떼 1.6 가솔린, 신차 2,500만원, 월 1,200km 주행, 아파트 자가 주차</p>
             <ul className="space-y-1.5 pl-1">
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>취득세: 175만원 (2,500만 × 7%)</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>공채 실질비용: 약 20만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>첫해 보험: 70~140만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 연료비: 약 176~215만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 소모품: 약 22~50만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>월 실 운행비: 약 22~34만원 (취득세 제외)</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>취득세: {만(EX.acquisitionTax)}만원 (2,500만 × 7%)</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>공채 실질비용: 약 {만(EX.registrationFee)}만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>첫해 보험: {만r(EX.firstYearInsurance.min, EX.firstYearInsurance.max)}만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 연료비: 약 {만r(EX.annualFuel.min, EX.annualFuel.max)}만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 소모품: 약 {만r(EX.annualConsumables.min, EX.annualConsumables.max)}만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>월 실 운행비: 약 {만r(EX.monthlyTotal.min, EX.monthlyTotal.max)}만원 (취득세 제외)</span></li>
             </ul>
           </div>
         </section>
@@ -129,7 +134,7 @@ export default function FirstCarBudgetPage() {
         <p className="text-xs text-slate-400">
           출처: 지방세법, 국토교통부 공인연비, 한국석유공사 오피넷, 환경부 충전요금, 보험개발원 통계 ·{" "}
           <Link href="/sources" className="text-blue-500 hover:underline">전체 출처 보기</Link>
-          {" "}· 마지막 업데이트: 2026-03-22
+          {" "}· 마지막 업데이트: 2026-04-03
         </p>
 
         <NextQuestions

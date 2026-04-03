@@ -1,47 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import fuelDefaults from "@/data/fuel-price-defaults.json";
+import { calcFuelVsEv, type FuelCompareRow } from "@/lib/calc-fuel-vs-ev";
 import { useCountUp } from "@/hooks/useCountUp";
 
 const fmt = (n: number) => n.toLocaleString("ko-KR");
 
-const DEFAULT_EFF = { gasoline: 12.5, hybrid: 18.0, ev: 4.5 };
-
-interface CompareRow {
-  label: string;
-  monthlyMin: number;
-  monthlyMax: number;
-  barColor: string;
-  textColor: string;
-}
-
 export function FuelVsEvCalc() {
   const [monthlyMileage, setMonthlyMileage] = useState(1200);
   const [homeChargeRatio, setHomeChargeRatio] = useState(70);
-  const calcRows = (mileage: number, chargeRatio: number): CompareRow[] => {
-    const safeDiv = (m: number, eff: number) => eff > 0 ? m / eff : 0;
-    const gasMin = Math.round(safeDiv(mileage, DEFAULT_EFF.gasoline * 1.1) * fuelDefaults.gasoline);
-    const gasMax = Math.round(safeDiv(mileage, DEFAULT_EFF.gasoline * 0.9) * fuelDefaults.gasoline);
-    const hybMin = Math.round(safeDiv(mileage, DEFAULT_EFF.hybrid * 1.1) * fuelDefaults.gasoline);
-    const hybMax = Math.round(safeDiv(mileage, DEFAULT_EFF.hybrid * 0.9) * fuelDefaults.gasoline);
-    const kwh = safeDiv(mileage, DEFAULT_EFF.ev);
-    const homeR = chargeRatio / 100;
-    const publicR = 1 - homeR;
-    const evMin = Math.round(kwh * (homeR * fuelDefaults.ev_home_slow_night + publicR * fuelDefaults.ev_public_slow));
-    const evMax = Math.round(kwh * (homeR * fuelDefaults.ev_home_slow + publicR * fuelDefaults.ev_public_fast_50kw));
-    return [
-      { label: "가솔린", monthlyMin: gasMin, monthlyMax: gasMax, barColor: "bg-orange-400", textColor: "text-orange-600" },
-      { label: "하이브리드", monthlyMin: hybMin, monthlyMax: hybMax, barColor: "bg-amber-400", textColor: "text-amber-600" },
-      { label: "전기차(EV)", monthlyMin: evMin, monthlyMax: evMax, barColor: "bg-blue-500", textColor: "text-blue-600" },
-    ];
-  };
 
-  const [result, setResult] = useState<CompareRow[]>(() => calcRows(monthlyMileage, homeChargeRatio));
+  const [result, setResult] = useState<FuelCompareRow[]>(() => calcFuelVsEv(monthlyMileage, homeChargeRatio));
 
   useEffect(() => {
     const id = setTimeout(() => {
-      setResult(calcRows(monthlyMileage, homeChargeRatio));
+      setResult(calcFuelVsEv(monthlyMileage, homeChargeRatio));
     }, 150);
     return () => clearTimeout(id);
   }, [monthlyMileage, homeChargeRatio]);
@@ -119,7 +92,7 @@ export function FuelVsEvCalc() {
 
           <p className="text-xs text-slate-400 pt-2 border-t border-slate-100">
             연비: 가솔린 12.5km/L · 하이브리드 18.0km/L · EV 4.5km/kWh 기준.
-            충전요금: 환경부·한국전력 공시 기준 (2026-03-22).
+            충전요금: 환경부·한국전력 공시 기준 (2026-04-03).
           </p>
         </div>
     </div>

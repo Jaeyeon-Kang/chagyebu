@@ -59,8 +59,8 @@ export function calcFirstCarBudget(input: FirstCarBudgetInput): FirstCarBudgetRe
       ? Math.max(0, Math.round(carPrice * baseRate) - evReductionCap)
       : Math.round(carPrice * baseRate);
 
-  // Fix #3: 공채 실질 비용 — 취득세와 통합된 등록세가 아니라 국민주택채권 할인 손실
-  // 서울 기준 차량가액 4% 매입, 즉시 매도 시 약 20% 손실 → 실질 0.8% 수준
+  // 공채 실질 비용 — 취득세와 통합된 등록세가 아니라 등록 채권(도시철도채권·지역개발채권) 할인 손실
+  // 배기량·지역에 따라 0.5~2% 범위. 여기서는 rough average로 0.8% 적용 (registration_fee_rate)
   const registrationFee = Math.round(
     carPrice * taxRules.registration_fee_rate
   );
@@ -141,6 +141,6 @@ export function calcFirstCarBudget(input: FirstCarBudgetInput): FirstCarBudgetRe
       "월 환산비 = 보험+연료+소모품+주차 (취득세·공채 제외한 반복 비용)",
       hasParking ? "자가 주차 기준 (주차비 미포함)" : "월 주차비 8~20만원 범위 포함",
     ].filter(Boolean),
-    updatedAt: "2026-03-22",
+    updatedAt: "2026-04-03",
   };
 }

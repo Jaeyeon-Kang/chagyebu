@@ -3,6 +3,10 @@ import Link from "next/link";
 import { NewVsUsedCalc } from "@/components/calculators/NewVsUsedCalc";
 import { NextQuestions } from "@/components/layout/NextQuestions";
 import { BASE_URL } from "@/lib/site-url";
+import { calcNewVsUsed } from "@/lib/calc-new-vs-used";
+
+const EX = calcNewVsUsed(35_000_000, 20_000_000, 3, 5);
+const 만 = (n: number) => Math.round(n / 10000).toLocaleString("ko-KR");
 
 export const metadata: Metadata = {
   title: "신차 vs 중고차 총소유비 비교 계산기",
@@ -70,7 +74,7 @@ export default function NewVsUsedPage() {
         <header className="space-y-2">
           <div className="flex items-center gap-2 flex-wrap">
             <p className="text-sm text-blue-600 font-medium">계산기</p>
-            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-03 데이터 반영</span>
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-04 데이터 반영</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">신차 vs 중고차 총소유비</h1>
           <p className="text-[15px] text-slate-600 leading-relaxed">
@@ -105,16 +109,16 @@ export default function NewVsUsedPage() {
             <div className="grid grid-cols-2 gap-4 pt-2">
               <div>
                 <p className="text-xs text-slate-400 mb-1">신차 5년 총소유비</p>
-                <p className="text-lg font-bold text-blue-600">약 3,060만원</p>
-                <p className="text-xs text-slate-400">감가 1,615만 + 취득세 245만 + 보험 450만 + 정비 250만</p>
+                <p className="text-lg font-bold text-blue-600">약 {만(EX.newTotalCost)}만원</p>
+                <p className="text-xs text-slate-400">감가 {만(EX.newDepreciation)}만 + 취득세 {만(EX.newTax)}만 + 보험 {만(EX.newInsurance)}만 + 정비 {만(EX.newMaintenance)}만</p>
               </div>
               <div>
                 <p className="text-xs text-slate-400 mb-1">중고차 5년 총소유비</p>
-                <p className="text-lg font-bold text-emerald-600">약 2,455만원</p>
-                <p className="text-xs text-slate-400">감가 820만 + 취득세 140만 + 보험 325만 + 정비 370만</p>
+                <p className="text-lg font-bold text-emerald-600">약 {만(EX.usedTotalCost)}만원</p>
+                <p className="text-xs text-slate-400">감가 {만(EX.usedDepreciation)}만 + 취득세 {만(EX.usedTax)}만 + 보험 {만(EX.usedInsurance)}만 + 정비 {만(EX.usedMaintenance)}만</p>
               </div>
             </div>
-            <p className="text-xs text-slate-400 pt-2">이 예시에서는 중고차가 약 605만원 절감됩니다. 슬라이더를 조절해 내 상황에 맞는 비교를 해보세요.</p>
+            <p className="text-xs text-slate-400 pt-2">이 예시에서는 중고차가 약 {만(EX.diff)}만원 절감됩니다. 슬라이더를 조절해 내 상황에 맞는 비교를 해보세요.</p>
           </div>
         </section>
 
@@ -135,7 +139,7 @@ export default function NewVsUsedPage() {
         <p className="text-xs text-slate-400">
           출처: 지방세법(취득세), 보험개발원(보험료 통계), 서비스센터 공시 공임표 ·{" "}
           <Link href="/sources" className="text-blue-500 hover:underline">전체 출처 보기</Link>
-          {" "}· 마지막 업데이트: 2026-03-22
+          {" "}· 마지막 업데이트: 2026-04-03
         </p>
 
         <NextQuestions

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { GUIDE_SLUGS } from "@/data/guides";
+import { BLOG_SLUGS } from "@/data/blog";
 import { BASE_URL } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -29,5 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...guideRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    ...BLOG_SLUGS.map((slug) => ({
+      url: `${BASE_URL}/blog/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
+
+  return [...staticRoutes, ...guideRoutes, ...blogRoutes];
 }

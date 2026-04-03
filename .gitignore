@@ -40,5 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# 기획 문서 (내부용)
+# 내부 운영 문서 (비공개)
 PLAN.md
+MAINTENANCE.md
+CHANGELOG-INTERNAL.md

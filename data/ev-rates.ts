@@ -7,7 +7,7 @@ export const EV_CHARGE_RATES = {
   homeSlowNightKwh: 73,    // 원/kWh (심야 시간대 적용 시)
 
   // 공용 완속 충전 (환경부 기준)
-  publicSlowKwh: 255,      // 원/kWh
+  publicSlowKwh: 295,      // 원/kWh
 
   // 급속 충전 (50kW급, 환경부 기준)
   publicFastKwh: 347,      // 원/kWh
@@ -15,15 +15,15 @@ export const EV_CHARGE_RATES = {
   // 급속 충전 (100kW급, 민간 사업자 기준 평균)
   privateFastKwh: 420,     // 원/kWh
 
-  updatedAt: "2026-03-22",
+  updatedAt: "2026-04-03",
   note: "요금은 공시 기준으로 실제 청구액과 다를 수 있습니다. 회원 할인, 구독 플랜에 따라 차이 발생.",
 };
 
 // 휘발유 비교 기준 (한국석유공사 오피넷 참고)
 export const GASOLINE_REFERENCE = {
-  pricePerLiter: 1680,     // 원/L (2026년 3월 전국 평균)
+  pricePerLiter: 1760,     // 원/L (2026년 4월 전국 평균)
   efficiencyKmPerLiter: 12, // km/L (중형 세단 기준)
-  updatedAt: "2026-03-22",
+  updatedAt: "2026-04-03",
 };
 
 // 대표 EV 효율 (공인 기준)
@@ -34,4 +34,4 @@ export const EV_EFFICIENCY: Record<string, number> = {
   "기타": 4.0,        // 기본값
 };
 
-export const UPDATED_AT = "2026-03-22";
+export const UPDATED_AT = "2026-04-03";

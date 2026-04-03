@@ -7,6 +7,7 @@ const NAV = [
   { href: "/calculator/first-car-budget", label: "첫차 실지출" },
   { href: "/calculator/fuel-vs-ev", label: "내연기관 vs EV" },
   { href: "/category/maintaining", label: "소모품·정비" },
+  { href: "/blog", label: "블로그" },
 ];
 
 export function Header() {
