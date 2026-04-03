@@ -27,7 +27,10 @@ export async function generateMetadata({
       description: post.description,
       type: "article",
       publishedTime: post.publishedAt,
+      modifiedTime: post.publishedAt,
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
     },
+    alternates: { canonical: `/blog/${slug}` },
   };
 }
 
@@ -50,6 +53,7 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
     author: { "@type": "Organization", name: "차계부", url: BASE_URL },
     publisher: { "@type": "Organization", name: "차계부", url: BASE_URL },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/${slug}` },

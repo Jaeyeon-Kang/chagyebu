@@ -30,6 +30,7 @@ const POPULAR_GUIDES = [
   { href: "/guide/tire-timing", label: "타이어 교체시기" },
   { href: "/guide/battery-timing", label: "배터리 교체시기" },
   { href: "/guide/first-car-hidden-costs", label: "딜러가 말 안 해주는 첫차 부대비용 7가지" },
+  { href: "/guide/car-tax-calculation", label: "자동차세 계산법 — 배기량·연식별 정리" },
 ];
 
 const CATEGORIES = [
@@ -48,7 +49,7 @@ export default function HomePage() {
         <div className="space-y-3">
           <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 leading-tight tracking-tight">
             차 살 때, 탈 때, 고칠 때<br />
-            <span className="text-blue-600">견적 전에</span> 먼저 확인하세요
+            <span className="text-blue-600">견적 전에</span> 확인하세요
           </h1>
           <p className="text-base text-slate-500 max-w-xl leading-relaxed">
             표준 비용 범위를 미리 알면 과다 청구를 바로 걸러낼 수 있습니다.
@@ -65,10 +66,10 @@ export default function HomePage() {
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-white">첫차 실지출액 계산기</h2>
+              <h2 className="text-lg font-bold text-white">첫차 총비용 계산기</h2>
               <span className="text-xs px-2 py-0.5 bg-white/20 text-white/90 rounded-full">첫차 구매 전 필수</span>
             </div>
-            <p className="text-sm text-blue-100 mt-1">취등록세, 보험, 연료비, 소모품까지 — 첫해 실지출액을 산출합니다</p>
+            <p className="text-sm text-blue-100 mt-1">취등록세, 보험, 연료비, 소모품까지 — 첫해 총비용을 확인해보세요</p>
           </div>
           <span className="text-white/60 group-hover:text-white transition-colors shrink-0 text-2xl">→</span>
         </Link>

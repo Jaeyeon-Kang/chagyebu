@@ -27,7 +27,9 @@ export async function generateMetadata({
       type: "article",
       publishedTime: guide.publishedAt ?? guide.updatedAt,
       modifiedTime: guide.updatedAt,
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: guide.title }],
     },
+    alternates: { canonical: `/guide/${slug}` },
   };
 }
 

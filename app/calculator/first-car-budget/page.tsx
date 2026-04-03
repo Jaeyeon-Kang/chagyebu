@@ -112,7 +112,7 @@ export default function FirstCarBudgetPage() {
               <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>첫해 보험: {만r(EX.firstYearInsurance.min, EX.firstYearInsurance.max)}만원</span></li>
               <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 연료비: 약 {만r(EX.annualFuel.min, EX.annualFuel.max)}만원</span></li>
               <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 소모품: 약 {만r(EX.annualConsumables.min, EX.annualConsumables.max)}만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>월 실 운행비: 약 {만r(EX.monthlyTotal.min, EX.monthlyTotal.max)}만원 (취득세 제외)</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>월 운행비: 약 {만r(EX.monthlyTotal.min, EX.monthlyTotal.max)}만원 (취득세 제외)</span></li>
             </ul>
           </div>
         </section>

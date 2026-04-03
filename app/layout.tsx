@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { BASE_URL } from "@/lib/site-url";
 import "./globals.css";
 
@@ -27,6 +26,10 @@ export const metadata: Metadata = {
     other: { "naver-site-verification": ["5431c888a9ccae2187ea6f86f37fc11f5e9aad6a"] },
   },
   alternates: { canonical: "/" },
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.svg", type: "image/svg+xml" }],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "차계부 — 자동차 비용 판단 가이드",
     description: "차 살 때·탈 때·정비할 때, 돈 문제를 숫자로 바로 이해하세요.",
@@ -56,7 +59,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
-        <GoogleAnalytics />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

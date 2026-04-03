@@ -15,7 +15,7 @@ export default function AboutPage() {
 
       <div className="space-y-6 text-[15px] text-slate-600 leading-relaxed">
         <section className="space-y-3">
-          <h2 className="text-base font-semibold text-slate-800">차계부가 뭐예요?</h2>
+          <h2 className="text-base font-semibold text-slate-800">차계부란?</h2>
           <p>
             자동차 관련 비용을 미리 파악할 수 있는 계산기와 가이드 모음입니다.
             "이 차 사면 한 달에 얼마나 드나", "브레이크패드 지금 갈아야 하나", "전기차가 진짜 더 저렴한가"처럼
@@ -24,11 +24,11 @@ export default function AboutPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-base font-semibold text-slate-800">실시간 견적은 아닙니다</h2>
+          <h2 className="text-base font-semibold text-slate-800">어떤 데이터를 사용하나요?</h2>
           <p>
-            지역별 공임이나 당일 부품 단가를 실시간으로 반영하지 않습니다.
-            대신 제조사 매뉴얼, 국토교통부·한국전력 공공 통계, 서비스센터 공시가를 기반으로
-            믿을 수 있는 범위를 보여줍니다.
+            제조사 매뉴얼, 국토교통부·한국전력 공공 통계, 서비스센터 공시가를 기반으로
+            믿을 수 있는 비용 범위를 보여줍니다. 지역별 공임이나 당일 부품 단가를 실시간으로
+            반영하지는 않습니다.
           </p>
           <p>
             실제 비용은 차종·지역·운행 조건·정비소에 따라 달라질 수 있습니다.
