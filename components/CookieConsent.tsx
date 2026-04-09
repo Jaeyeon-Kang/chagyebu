@@ -31,23 +31,11 @@ export function CookieConsent() {
   return (
     <>
       {consent === true && (
-        <>
-          <Script
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7755590920394652"
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-TY81JM0FMP"
-            strategy="afterInteractive"
-          />
-          <Script id="gtag-init" strategy="afterInteractive">{`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TY81JM0FMP');
-          `}</Script>
-        </>
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7755590920394652"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       )}
 
       {consent === null && (
