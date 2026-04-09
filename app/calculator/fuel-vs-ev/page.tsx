@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "연료비 비교 계산기 — 가솔린·하이브리드·EV 월 비용 비교",
   description:
     "월 주행거리와 충전 환경을 입력하면 가솔린·하이브리드·EV 3가지 연료 타입의 월 비용을 나란히 비교할 수 있습니다.",
+  alternates: { canonical: "/calculator/fuel-vs-ev" },
 };
 
 const FAQ_ITEMS = [

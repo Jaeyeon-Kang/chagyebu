@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "면책고지",
   description: "차계부 사이트에서 제공하는 정보의 정확성과 활용에 관한 면책 고지입니다.",
+  alternates: { canonical: "/disclaimer" },
 };
 
 export default function DisclaimerPage() {

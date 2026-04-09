@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "이용약관",
   description: "차계부 서비스 이용약관입니다. 서비스 이용 조건, 면책 범위, 지적재산권 등 주요 사항을 확인하세요.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

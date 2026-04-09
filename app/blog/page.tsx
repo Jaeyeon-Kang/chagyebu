@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "블로그 — 자동차 비용 뉴스와 분석",
   description:
     "유가 동향, EV 보조금 변경, 보험료 트렌드 등 자동차 비용에 영향을 주는 최신 소식을 정리합니다.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogListPage() {

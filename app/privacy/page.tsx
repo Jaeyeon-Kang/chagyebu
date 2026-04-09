@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "개인정보처리방침",
+  description: "차계부의 개인정보처리방침입니다. 수집하는 정보와 처리 방법을 안내합니다.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

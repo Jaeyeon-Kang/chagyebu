@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "신차 vs 중고차 총소유비 비교 계산기",
   description:
     "5년 기준 총소유비(감가상각 포함)로 신차와 중고차 중 어느 쪽이 경제적으로 유리한지 비교합니다.",
+  alternates: { canonical: "/calculator/new-vs-used" },
 };
 
 const FAQ_ITEMS = [

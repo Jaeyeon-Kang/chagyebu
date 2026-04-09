@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "소개",
   description: "차계부는 자동차 비용을 미리 파악할 수 있는 계산기와 가이드 모음입니다.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

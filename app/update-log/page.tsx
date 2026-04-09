@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "업데이트 기록",
   description: "차계부 계산기와 가이드의 데이터 업데이트 이력을 확인할 수 있습니다.",
+  alternates: { canonical: "/update-log" },
 };
 
 const UPDATES = [

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "첫차 총예산 계산기 — 차값 외 숨겨진 비용 포함",
   description:
     "차값만 보면 안 됩니다. 취등록세·보험료·연료비·소모품까지 첫해 실제 총비용과 월 유지비를 한 번에 계산하세요.",
+  alternates: { canonical: "/calculator/first-car-budget" },
 };
 
 const FAQ_ITEMS = [

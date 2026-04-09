@@ -6,6 +6,7 @@ import { GuideCard } from "@/components/ui/GuideCard";
 export const metadata: Metadata = {
   title: "살 때 가이드 — 첫차·중고차 비용 허브",
   description: "첫차 살 때 빠지는 비용, 중고차 유지비 체크 등 구매 전 꼭 알아야 할 비용 정보를 모았습니다.",
+  alternates: { canonical: "/category/buying" },
   openGraph: {
     title: "살 때 가이드 — 첫차·중고차 비용 허브",
     description: "첫차 살 때 빠지는 비용, 중고차 유지비 체크 등 구매 전 꼭 알아야 할 비용 정보를 모았습니다.",
