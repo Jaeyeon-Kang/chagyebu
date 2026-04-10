@@ -47,10 +47,20 @@ export function FirstCarBudgetCalc() {
       <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-5">
 
         <div className="space-y-2">
-          <label className="flex justify-between text-sm text-slate-600">
-            <span>차량 구매가</span>
-            <span className="font-semibold text-blue-600 tabular-nums">{fmt(carPrice)}원</span>
-          </label>
+          <label className="text-sm text-slate-600">차량 구매가</label>
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              inputMode="numeric"
+              value={fmt(carPrice)}
+              onChange={(e) => {
+                const v = Number(e.target.value.replace(/[^0-9]/g, ""));
+                if (!isNaN(v)) setCarPrice(Math.min(80000000, Math.max(5000000, v)));
+              }}
+              className="w-full rounded-lg border border-slate-200 px-3 py-2 text-right text-sm font-semibold text-blue-600 tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <span className="text-sm text-slate-500 shrink-0">원</span>
+          </div>
           <input
             type="range" min={5000000} max={80000000} step={500000}
             value={carPrice}
@@ -60,6 +70,7 @@ export function FirstCarBudgetCalc() {
           <div className="flex justify-between text-xs text-slate-400">
             <span>500만원</span><span>8,000만원</span>
           </div>
+          <p className="text-xs text-slate-400">국산 소형차 1,500~2,500만원 · 중형차 2,500~4,000만원 · 수입차 4,000만원~</p>
         </div>
 
         <div className="space-y-2">
@@ -82,18 +93,36 @@ export function FirstCarBudgetCalc() {
         </div>
 
         <div className="space-y-2">
-          <label className="flex justify-between text-sm text-slate-600">
-            <span>월 주행거리</span>
-            <span className="font-semibold text-blue-600 tabular-nums">{fmt(monthlyMileage)}km</span>
-          </label>
+          <label className="text-sm text-slate-600">월 주행거리</label>
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              inputMode="numeric"
+              value={fmt(monthlyMileage)}
+              onChange={(e) => {
+                const v = Number(e.target.value.replace(/[^0-9]/g, ""));
+                if (!isNaN(v)) setMonthlyMileage(Math.min(5000, Math.max(100, v)));
+              }}
+              className="w-full rounded-lg border border-slate-200 px-3 py-2 text-right text-sm font-semibold text-blue-600 tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <span className="text-sm text-slate-500 shrink-0">km</span>
+          </div>
           <input
-            type="range" min={300} max={5000} step={100}
+            type="range" min={100} max={5000} step={100}
             value={monthlyMileage}
             onChange={(e) => setMonthlyMileage(Number(e.target.value))}
             className="w-full"
           />
           <div className="flex justify-between text-xs text-slate-400">
-            <span>300km</span><span>5,000km</span>
+            <span>100km</span><span>5,000km</span>
+          </div>
+          <div className="bg-slate-50 rounded-lg px-3 py-2 text-xs text-slate-500 space-y-0.5">
+            <p className="font-medium text-slate-600">보통 얼마로 잡나요?</p>
+            <p>주말에만 운행 → 약 300~500km/월</p>
+            <p>출퇴근 편도 10km → 약 700~900km/월</p>
+            <p>출퇴근 편도 20km → 약 1,200~1,500km/월</p>
+            <p>출퇴근 + 장거리 자주 → 2,000km~/월</p>
+            <p className="text-slate-400 pt-0.5">한국 평균 약 1,100km/월 (교통안전공단 2024)</p>
           </div>
         </div>
 
