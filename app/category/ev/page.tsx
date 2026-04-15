@@ -27,6 +27,20 @@ export default function EvCategoryPage() {
         </p>
       </header>
 
+      <div className="bg-slate-50 rounded-xl p-5 text-[15px] text-slate-600 leading-relaxed space-y-2">
+        <p>
+          "전기차가 진짜 더 저렴할까?" — 구매 보조금, 취등록세 감면, 낮은 충전비 덕분에
+          전기차가 경제적으로 유리해 보이지만, 실제로는 주행 패턴과 충전 환경에 따라
+          내연기관차보다 비용이 더 들 수도 있습니다.
+        </p>
+        <p>
+          아래 가이드에서는 전기차 충전비의 실제 구조(공용 급속·완속, 집충전 요금 차이),
+          하이브리드와 순수 EV의 연간 유지비 차이, 그리고 전기차가 경제적으로 유리한 경우와
+          그렇지 않은 경우를 구체적인 수치로 비교합니다.
+          충전 요금은 환경부·한국전력 공시 기준이며, 월 1~2회 업데이트합니다.
+        </p>
+      </div>
+
       <div className="grid gap-3">
         {guides.map((g) => (
           <GuideCard key={g.slug} slug={g.slug} title={g.title} description={g.description} />

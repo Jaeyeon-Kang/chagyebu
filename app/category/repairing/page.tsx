@@ -28,6 +28,19 @@ export default function RepairingCategoryPage() {
         </p>
       </header>
 
+      <div className="bg-slate-50 rounded-xl p-5 text-[15px] text-slate-600 leading-relaxed space-y-2">
+        <p>
+          정비소에서 견적을 받았을 때 "이게 적정 가격인지" 판단하기 어려운 경우가 많습니다.
+          특히 처음 차를 가진 운전자라면 정비사가 권하는 항목이 정말 필요한 것인지,
+          아니면 과잉 정비인지 구분하기 힘듭니다.
+        </p>
+        <p>
+          아래 가이드에서는 주요 수리 항목별 적정 비용 범위(제조사 공식 서비스센터 기준),
+          교체가 정말 필요한 상황을 판단하는 체크리스트, 그리고 정비소 방문 전에
+          미리 확인할 사항을 정리했습니다. 견적서를 받았을 때 비교 기준으로 활용하세요.
+        </p>
+      </div>
+
       <div className="grid gap-3">
         {guides.map((g) => (
           <GuideCard key={g.slug} slug={g.slug} title={g.title} description={g.description} />

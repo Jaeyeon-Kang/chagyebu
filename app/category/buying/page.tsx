@@ -27,6 +27,19 @@ export default function BuyingCategoryPage() {
         </p>
       </header>
 
+      <div className="bg-slate-50 rounded-xl p-5 text-[15px] text-slate-600 leading-relaxed space-y-2">
+        <p>
+          자동차를 살 때 차량 가격만 보고 예산을 잡으면 취등록세, 공채 매입, 보험료 등
+          예상치 못한 부대비용에 당황하게 됩니다. 특히 첫차를 구매하는 사회 초년생이라면
+          차값 외에 첫해에만 <strong>200~500만 원</strong>의 추가 비용이 발생할 수 있습니다.
+        </p>
+        <p>
+          아래 가이드에서는 취등록세 계산법, 신차와 중고차의 5년 총비용 차이,
+          자동차보험 가입 시 체크할 항목 등 구매 전에 반드시 확인해야 할 비용 정보를 정리했습니다.
+          모든 수치는 국토교통부, 지방세법, 보험개발원 등 공공 데이터를 기반으로 합니다.
+        </p>
+      </div>
+
       <div className="grid gap-3">
         {guides.map((g) => (
           <GuideCard key={g.slug} slug={g.slug} title={g.title} description={g.description} />

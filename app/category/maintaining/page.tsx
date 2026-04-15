@@ -27,6 +27,20 @@ export default function MaintainingCategoryPage() {
         </p>
       </header>
 
+      <div className="bg-slate-50 rounded-xl p-5 text-[15px] text-slate-600 leading-relaxed space-y-2">
+        <p>
+          자동차 유지비에서 가장 큰 비중을 차지하는 것은 연료비와 정기 정비비입니다.
+          엔진오일, 브레이크패드, 타이어, 배터리 등 소모품은 교체주기를 놓치면
+          더 큰 수리비로 이어질 수 있고, 반대로 너무 일찍 교체하면 불필요한 지출이 됩니다.
+        </p>
+        <p>
+          아래 가이드에서는 제조사 매뉴얼 권장 주기와 실제 운행 조건을 고려한
+          적정 교체 시기, 부품별 예상 비용(부품비+공임), 그리고 정비소에서
+          과잉 정비를 권유받았을 때 판단하는 기준을 정리했습니다.
+          비용 수치는 제조사 공식 서비스센터 공임표를 기준으로 합니다.
+        </p>
+      </div>
+
       <div className="grid gap-3">
         {guides.map((g) => (
           <GuideCard key={g.slug} slug={g.slug} title={g.title} description={g.description} />
