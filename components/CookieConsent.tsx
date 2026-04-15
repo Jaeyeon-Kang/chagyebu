@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Script from "next/script";
 
 const CONSENT_KEY = "chagyebu_cookie_consent";
+const GA_ID = "G-TY81JM0FMP";
 
 export function CookieConsent() {
   const [consent, setConsent] = useState<boolean | null>(null);
@@ -31,11 +32,30 @@ export function CookieConsent() {
   return (
     <>
       {consent === true && (
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7755590920394652"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        <>
+          {/* Google Analytics — 동의 후에만 로드 */}
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="gtag-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}', {
+                page_path: window.location.pathname,
+              });
+            `}
+          </Script>
+
+          {/* Google AdSense — 동의 후에만 로드 */}
+          <Script
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7755590920394652"
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        </>
       )}
 
       {consent === null && (
