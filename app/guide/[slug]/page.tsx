@@ -156,6 +156,33 @@ export default async function GuidePage({
             }))}
           />
         )}
+
+        <footer className="border-t border-slate-200 pt-6 space-y-3 text-xs text-slate-500 leading-relaxed">
+          <div className="space-y-1">
+            <p>
+              <span className="font-semibold text-slate-700">작성·검토</span> · 차계부 편집팀
+            </p>
+            <p>
+              <span className="font-semibold text-slate-700">최초 발행</span> ·{" "}
+              {guide.publishedAt ?? guide.updatedAt}
+            </p>
+            <p>
+              <span className="font-semibold text-slate-700">최종 검토일</span> · {guide.updatedAt}
+            </p>
+            <p>
+              <span className="font-semibold text-slate-700">자료 출처</span> · 제조사 매뉴얼 권장
+              주기, 한국교통안전공단·국토교통부 공시 자료, 정비소 표준 공임가표.{" "}
+              <Link href="/sources" className="underline hover:text-slate-700">
+                전체 출처 보기
+              </Link>
+            </p>
+          </div>
+          <p className="text-slate-400">
+            본 가이드는 일반적인 기준값을 정리한 정보 콘텐츠입니다. 차종·연식·운행 환경에 따라
+            실제 권장 주기와 비용이 다를 수 있으므로, 구체적인 점검은 전문 정비사에게 확인하시기
+            바랍니다. 가이드 내용은 정기적으로 검토·갱신됩니다.
+          </p>
+        </footer>
       </div>
     </>
   );

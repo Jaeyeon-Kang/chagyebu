@@ -128,7 +128,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="mt-2 text-right">
-          <Link href="/category/maintaining" className="text-xs text-slate-400 hover:text-blue-500">
+          <Link href="/guide" className="text-xs text-slate-400 hover:text-blue-500">
             가이드 {GUIDES.length}개 전체 보기 →
           </Link>
         </div>

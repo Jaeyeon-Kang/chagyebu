@@ -113,6 +113,79 @@ export default function AboutPage() {
             <li><strong>사용자 중심</strong>: 사이트 사용에 회원 가입이 필요 없으며, 개인 정보를 수집하지 않습니다.</li>
           </ul>
         </section>
+
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-slate-800">누가 만들고 검토하나요?</h2>
+          <p>
+            차계부는 <strong>차계부 편집팀</strong>이 직접 운영하는 1인 미디어 프로젝트입니다.
+            자동차 비용 정보를 다년간 직접 정리해 온 운영자가, 공공 데이터와 정비소
+            표준 공임가표를 바탕으로 모든 가이드를 작성·검토합니다.
+          </p>
+          <p>
+            계산기 로직은 <strong>지방세법 시행령·환경부 공시 자료·국토교통부 공인 연비</strong> 등 법령과
+            공시 자료를 직접 인용해 코드로 구현했으며, 분기마다 한 번씩 수치를 재검증합니다.
+            검증 이력은 <Link href="/update-log" className="text-blue-600 hover:underline">업데이트 기록</Link>에서 확인할 수 있습니다.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-slate-800">편집·검토 프로세스</h2>
+          <ol className="list-decimal pl-5 space-y-2 text-slate-600">
+            <li>
+              <strong>1차 자료 수집</strong>: 제조사 매뉴얼, 한국교통안전공단·환경부·국세청·국토교통부 등
+              공공 기관 공시 자료를 1차 출처로 사용합니다.
+            </li>
+            <li>
+              <strong>2차 검증</strong>: 정비소 표준 공임가표, 카히스토리, 보험개발원 통계 등 업계
+              자료로 가격·수치 범위를 교차 확인합니다.
+            </li>
+            <li>
+              <strong>가이드 작성</strong>: 운전자가 실제로 마주치는 의사결정 순간을 기준으로
+              질문-답 구조로 작성합니다. 광고성 표현은 사용하지 않습니다.
+            </li>
+            <li>
+              <strong>분기 재검토</strong>: 모든 가이드는 분기마다 최신 가격·법령 기준으로
+              재검토하고 변경 사항이 있으면 갱신일을 표시합니다.
+            </li>
+            <li>
+              <strong>오류 신고 반영</strong>: 사용자 신고로 오류가 확인되면 24시간 이내 검토,
+              수정 후 업데이트 기록에 명시합니다.
+            </li>
+          </ol>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-lg font-semibold text-slate-800">연락 및 운영 정보</h2>
+          <ul className="space-y-1 text-slate-600">
+            <li>
+              <strong>운영자</strong>: 차계부 편집팀
+            </li>
+            <li>
+              <strong>문의·제보</strong>:{" "}
+              <Link href="/contact" className="text-blue-600 hover:underline">
+                문의 페이지
+              </Link>
+            </li>
+            <li>
+              <strong>개인정보 처리</strong>:{" "}
+              <Link href="/privacy" className="text-blue-600 hover:underline">
+                개인정보처리방침
+              </Link>
+            </li>
+            <li>
+              <strong>이용약관</strong>:{" "}
+              <Link href="/terms" className="text-blue-600 hover:underline">
+                이용약관
+              </Link>
+            </li>
+            <li>
+              <strong>면책 고지</strong>:{" "}
+              <Link href="/disclaimer" className="text-blue-600 hover:underline">
+                면책고지
+              </Link>
+            </li>
+          </ul>
+        </section>
       </div>
     </div>
   );
