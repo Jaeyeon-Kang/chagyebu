@@ -24,12 +24,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const guideRoutes: MetadataRoute.Sitemap = GUIDE_SLUGS.map((slug) => ({
-    url: `${BASE_URL}/guide/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
+  const guideRoutes: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/guide`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    ...GUIDE_SLUGS.map((slug) => ({
+      url: `${BASE_URL}/guide/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
 
   const blogRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
