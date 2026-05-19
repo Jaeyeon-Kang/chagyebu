@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.kipris.or.kr)",
+      "Bash(git -C \"D:/work/chabiseo\" remote -v)",
+      "Bash(git -C \"D:/work/chabiseo\" remote set-url origin https://github.com/Jaeyeon-Kang/chagyebu.git)",
+      "Bash(Rename-Item \"D:\\\\work\\\\chabiseo\" \"D:\\\\work\\\\chagyebu\")",
+      "Bash(cmd.exe /c \"rename D:\\\\work\\\\chabiseo chagyebu\")"
+    ]
+  }
+}

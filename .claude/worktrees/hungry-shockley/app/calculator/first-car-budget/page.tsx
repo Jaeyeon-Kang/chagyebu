@@ -3,17 +3,11 @@ import Link from "next/link";
 import { FirstCarBudgetCalc } from "@/components/calculators/FirstCarBudgetCalc";
 import { NextQuestions } from "@/components/layout/NextQuestions";
 import { BASE_URL } from "@/lib/site-url";
-import { calcFirstCarBudget } from "@/lib/calc-first-car-budget";
-
-const EX = calcFirstCarBudget({ carPrice: 25_000_000, fuelType: "gasoline", monthlyMileageKm: 1200, hasParking: true });
-const 만 = (n: number) => Math.round(n / 10000).toLocaleString("ko-KR");
-const 만r = (min: number, max: number) => `${만(min)}~${만(max)}`;
 
 export const metadata: Metadata = {
   title: "첫차 총예산 계산기 — 차값 외 숨겨진 비용 포함",
   description:
     "차값만 보면 안 됩니다. 취등록세·보험료·연료비·소모품까지 첫해 실제 총비용과 월 유지비를 한 번에 계산하세요.",
-  alternates: { canonical: "/calculator/first-car-budget" },
 };
 
 const FAQ_ITEMS = [
@@ -76,7 +70,7 @@ export default function FirstCarBudgetPage() {
         <header className="space-y-2">
           <div className="flex items-center gap-2 flex-wrap">
             <p className="text-sm text-blue-600 font-medium">계산기</p>
-            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-04 데이터 반영</span>
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-03 데이터 반영</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">첫차 총예산 계산기</h1>
           <p className="text-[15px] text-slate-600 leading-relaxed">
@@ -108,70 +102,13 @@ export default function FirstCarBudgetPage() {
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-[15px] text-slate-600 leading-relaxed">
             <p className="font-semibold text-slate-800">아반떼 1.6 가솔린, 신차 2,500만원, 월 1,200km 주행, 아파트 자가 주차</p>
             <ul className="space-y-1.5 pl-1">
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>취득세: {만(EX.acquisitionTax)}만원 (2,500만 × 7%)</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>공채 실질비용: 약 {만(EX.registrationFee)}만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>첫해 보험: {만r(EX.firstYearInsurance.min, EX.firstYearInsurance.max)}만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 연료비: 약 {만r(EX.annualFuel.min, EX.annualFuel.max)}만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 소모품: 약 {만r(EX.annualConsumables.min, EX.annualConsumables.max)}만원</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>월 운행비: 약 {만r(EX.monthlyTotal.min, EX.monthlyTotal.max)}만원 (취득세 제외)</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>취득세: 175만원 (2,500만 × 7%)</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>공채 실질비용: 약 20만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>첫해 보험: 70~140만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 연료비: 약 176~215만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>연간 소모품: 약 22~50만원</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>월 실 운행비: 약 22~34만원 (취득세 제외)</span></li>
             </ul>
-          </div>
-        </section>
-
-        {/* 단계별 활용법 */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-bold text-slate-900 border-l-2 border-blue-500 pl-3">구매 단계별 활용법</h2>
-          <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4 text-[15px] text-slate-600 leading-relaxed">
-            <div className="space-y-1">
-              <p className="font-semibold text-slate-800">① 차량 선택 전 — 예산 가능 범위 확인</p>
-              <p>
-                관심 있는 차값을 입력해보고 첫해 총비용이 본인 예산 안에 들어오는지 확인하세요.
-                보통 차값 외 비용으로 <strong>차값의 15~25%</strong>가 첫해에 추가로 나갑니다.
-                2,500만 원 차량이라면 첫해 총 비용은 약 2,900~3,100만 원 수준입니다.
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="font-semibold text-slate-800">② 보험사 견적 받기 전 — 합리적 보험료 기준 만들기</p>
-              <p>
-                계산기에서 나온 보험료 추정치가 "보험사가 부르는 가격이 적정한지" 판단 기준이 됩니다.
-                견적이 추정치보다 30% 이상 비싸면, 다른 보험사 견적을 추가로 받아보세요.
-                <Link href="/blog/2026-car-insurance-rate-increase" className="text-blue-600 underline">2026년 보험료 인상</Link> 글도 참고하세요.
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="font-semibold text-slate-800">③ 계약 직전 — 딜러 견적과 비교</p>
-              <p>
-                딜러가 제시하는 견적은 보통 등록·이전 등 부대비용을 별도로 잡습니다.
-                <Link href="/guide/first-car-hidden-costs" className="text-blue-600 underline">딜러가 안 알려주는 첫차 부대비용 7가지</Link>를
-                먼저 읽고 견적서를 항목별로 검증하세요.
-              </p>
-            </div>
-            <div className="space-y-1">
-              <p className="font-semibold text-slate-800">④ 차 받은 후 — 첫 1년 가계부 관리</p>
-              <p>
-                월 운행비 추정치를 가계부 항목으로 등록해두면 실제 지출과 비교할 수 있습니다.
-                실제가 추정치보다 크게 높다면 보험 갱신·운행 패턴·연료 효율을 점검할 시점입니다.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 결과 해석 가이드 */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-bold text-slate-900 border-l-2 border-blue-500 pl-3">결과 해석 — 위험 신호 보는 법</h2>
-          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 space-y-3 text-[15px] text-slate-600 leading-relaxed">
-            <p>
-              <strong className="text-amber-800">⚠️ 첫해 총비용이 연 소득의 60%를 넘으면</strong> —
-              차량 구매가 가계에 부담이 됩니다. 차값을 낮추거나 중고차 옵션을 검토하세요.
-            </p>
-            <p>
-              <strong className="text-amber-800">⚠️ 월 운행비가 가구 가처분 소득의 15%를 넘으면</strong> —
-              유지비 부담이 큽니다. 하이브리드·전기차 옵션이나 주행거리 줄이는 방안을 고려하세요.
-            </p>
-            <p>
-              <strong className="text-amber-800">⚠️ 보험료 + 연료비 합이 차값의 10%를 넘으면</strong> —
-              운행 환경이 차량 선택과 안 맞을 가능성. 차종 변경을 검토하세요.
-            </p>
           </div>
         </section>
 
@@ -192,7 +129,7 @@ export default function FirstCarBudgetPage() {
         <p className="text-xs text-slate-400">
           출처: 지방세법, 국토교통부 공인연비, 한국석유공사 오피넷, 환경부 충전요금, 보험개발원 통계 ·{" "}
           <Link href="/sources" className="text-blue-500 hover:underline">전체 출처 보기</Link>
-          {" "}· 마지막 업데이트: 2026-04-03
+          {" "}· 마지막 업데이트: 2026-03-22
         </p>
 
         <NextQuestions

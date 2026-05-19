@@ -3,24 +3,17 @@ import Link from "next/link";
 import { FuelVsEvCalc } from "@/components/calculators/FuelVsEvCalc";
 import { NextQuestions } from "@/components/layout/NextQuestions";
 import { BASE_URL } from "@/lib/site-url";
-import { calcFuelVsEv, FUEL_EFFICIENCY } from "@/lib/calc-fuel-vs-ev";
-import fuelDefaults from "@/data/fuel-price-defaults.json";
-
-const EX = calcFuelVsEv(1200, 70);
-const 만 = (n: number) => Math.round(n / 10000);
-const fmtP = (n: number) => n.toLocaleString("ko-KR");
 
 export const metadata: Metadata = {
   title: "연료비 비교 계산기 — 가솔린·하이브리드·EV 월 비용 비교",
   description:
-    "월 주행거리와 충전 환경을 입력하면 가솔린·하이브리드·EV 3가지 연료 타입의 월 비용을 나란히 비교할 수 있습니다.",
-  alternates: { canonical: "/calculator/fuel-vs-ev" },
+    "월 주행거리와 충전 환경을 입력하면 가솔린·하이브리드·EV 3가지 연료 타입의 월 비용을 나란히 비교해 드립니다.",
 };
 
 const FAQ_ITEMS = [
   {
     q: "EV 충전 단가는 어떤 기준인가요?",
-    a: `환경부·한국전력 공시 기준입니다. 집충전(완속)은 kWh당 ${fuelDefaults.ev_home_slow_night}~${fuelDefaults.ev_home_slow}원, 공용 완속 ${fuelDefaults.ev_public_slow}원, 공용 급속(50kW) ${fuelDefaults.ev_public_fast_50kw}원, 급속(100kW) ${fuelDefaults.ev_public_fast_100kw}원입니다. 집충전 비율에 따라 가중 평균으로 계산합니다.`,
+    a: "환경부·한국전력 공시 기준입니다. 집충전(완속)은 kWh당 73~120원, 공용 완속 255원, 공용 급속(50kW) 347원, 급속(100kW) 420원입니다. 집충전 비율에 따라 가중 평균으로 계산합니다.",
   },
   {
     q: "하이브리드 연료비는 왜 휘발유 단가로 계산하나요?",
@@ -28,7 +21,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "집충전이 불가능하면 EV가 무조건 비싼가요?",
-    a: "공용 급속충전만 사용하면 가솔린이나 하이브리드보다 비쌀 수 있습니다. 집충전 비율 슬라이더를 0%로 놓고 확인해보세요. 공용 완속충전을 활용하면 비용이 상당히 줄어듭니다.",
+    a: "공용 급속충전만 사용하면 가솔린 하이브리드보다 비쌀 수 있습니다. 집충전 비율 슬라이더를 0%로 놓고 확인해보세요. 공용 완속충전을 활용하면 비용이 상당히 줄어듭니다.",
   },
   {
     q: "디젤은 왜 비교에 포함되지 않나요?",
@@ -77,7 +70,7 @@ export default function FuelVsEvPage() {
         <header className="space-y-2">
           <div className="flex items-center gap-2 flex-wrap">
             <p className="text-sm text-blue-600 font-medium">계산기</p>
-            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-04 데이터 반영</span>
+            <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">2026-03 데이터 반영</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">연료비 비교 계산기</h1>
           <p className="text-[15px] text-slate-600 leading-relaxed">
@@ -93,7 +86,7 @@ export default function FuelVsEvPage() {
           <h2 className="text-lg font-bold text-slate-900 border-l-2 border-blue-500 pl-3">계산 근거</h2>
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-[15px] text-slate-600 leading-relaxed">
             <p>
-              연료 단가는 <strong>한국석유공사 오피넷 전국 평균</strong>(휘발유 {fmtP(fuelDefaults.gasoline)}원/L 기준),
+              연료 단가는 <strong>한국석유공사 오피넷 전국 평균</strong>(휘발유 1,680원/L 기준),
               EV 충전 요금은 <strong>환경부·한국전력 공시 기준</strong>을 적용합니다.
             </p>
             <p>
@@ -109,46 +102,11 @@ export default function FuelVsEvPage() {
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-[15px] text-slate-600 leading-relaxed">
             <p className="font-semibold text-slate-800">월 1,200km 주행, 집충전 70%인 경우</p>
             <ul className="space-y-1.5 pl-1">
-              <li className="flex gap-2"><span className="text-orange-500 shrink-0">•</span><span>가솔린: 월 약 {만(EX[0].monthlyMin)}~{만(EX[0].monthlyMax)}만원 (연비 {FUEL_EFFICIENCY.gasoline}km/L, 휘발유 {fmtP(fuelDefaults.gasoline)}원/L)</span></li>
-              <li className="flex gap-2"><span className="text-amber-500 shrink-0">•</span><span>하이브리드: 월 약 {만(EX[1].monthlyMin)}~{만(EX[1].monthlyMax)}만원 (연비 {FUEL_EFFICIENCY.hybrid}km/L, 휘발유 {fmtP(fuelDefaults.gasoline)}원/L)</span></li>
-              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>전기차: 월 약 {만(EX[2].monthlyMin)}~{만(EX[2].monthlyMax)}만원 (연비 {FUEL_EFFICIENCY.ev}km/kWh, 집충전 70% 기준)</span></li>
+              <li className="flex gap-2"><span className="text-orange-500 shrink-0">•</span><span>가솔린: 월 약 13~16만원 (연비 12.5km/L, 휘발유 1,680원/L)</span></li>
+              <li className="flex gap-2"><span className="text-amber-500 shrink-0">•</span><span>하이브리드: 월 약 9~11만원 (연비 18.0km/L, 휘발유 1,680원/L)</span></li>
+              <li className="flex gap-2"><span className="text-blue-500 shrink-0">•</span><span>전기차: 월 약 2~5만원 (연비 4.5km/kWh, 집충전 70% 기준)</span></li>
             </ul>
             <p className="text-xs text-slate-400 pt-2">집충전 비율을 0%로 변경하면 공용충전만 사용하는 시나리오를 확인할 수 있습니다.</p>
-          </div>
-        </section>
-
-        {/* 시나리오별 추천 */}
-        <section className="space-y-4">
-          <h2 className="text-lg font-bold text-slate-900 border-l-2 border-blue-500 pl-3">상황별 추천 연료 타입</h2>
-          <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4 text-[15px] text-slate-600 leading-relaxed">
-            <div>
-              <p className="font-semibold text-slate-800">🏠 아파트 자가충전 가능 · 월 1,500km 이상</p>
-              <p>
-                <strong>전기차가 압도적으로 유리</strong>합니다. 집충전 70~100% 비율을 유지하면
-                가솔린 대비 월 연료비가 60~80% 절감됩니다. 다만 충전기 설치비(50~150만원)와 보조금 환수 조건은 별도로 확인하세요.
-              </p>
-            </div>
-            <div>
-              <p className="font-semibold text-slate-800">🏢 빌라·다세대 · 집충전 불가</p>
-              <p>
-                <strong>하이브리드가 가장 합리적</strong>입니다. 공용 급속 충전만 쓰면 전기차 월 비용이 9~11만 원으로 하이브리드(11~13만 원)와 거의 같거나 더 비싸집니다.
-                <Link href="/blog/2026-ev-charging-infra-update" className="text-blue-600 underline">전기차 충전 인프라 현황</Link>도 참고하세요.
-              </p>
-            </div>
-            <div>
-              <p className="font-semibold text-slate-800">🚗 월 500km 이하 단거리 위주</p>
-              <p>
-                <strong>가솔린 소형차</strong>가 가장 경제적입니다. 연료비 절감 효과가 작아 하이브리드·EV 프리미엄을 회수하기 어렵습니다.
-                중고차 옵션도 적극 검토하세요.
-              </p>
-            </div>
-            <div>
-              <p className="font-semibold text-slate-800">🚙 월 2,500km 이상 장거리 출퇴근</p>
-              <p>
-                <strong>전기차 + 집충전</strong> 또는 <strong>하이브리드</strong>를 검토하세요.
-                연 30,000km 이상 주행 시 가솔린 대비 연 100~200만원 차이가 발생합니다.
-              </p>
-            </div>
           </div>
         </section>
 
@@ -169,7 +127,7 @@ export default function FuelVsEvPage() {
         <p className="text-xs text-slate-400">
           출처: 한국석유공사 오피넷, 환경부 충전요금, 한국전력, 국토교통부 공인연비 ·{" "}
           <Link href="/sources" className="text-blue-500 hover:underline">전체 출처 보기</Link>
-          {" "}· 마지막 업데이트: 2026-04-03
+          {" "}· 마지막 업데이트: 2026-03-22
         </p>
 
         <NextQuestions

@@ -164,6 +164,87 @@ export default function HomePage() {
         </section>
       )}
 
+      {/* 왜 차계부인가 — 운영자 메시지 */}
+      <section className="mb-14 border-t border-slate-100 pt-10">
+        <h2 className="text-xl font-bold text-slate-900 mb-4">왜 차계부를 만들었나요?</h2>
+        <div className="space-y-4 text-[15px] text-slate-600 leading-relaxed">
+          <p>
+            첫차를 살 때 차값 2,000만 원만 보고 예산을 잡았다가,
+            취등록세 140만 원, 공채 20만 원, 첫해 보험료 100만 원, 4년치 자동차세, 소모품 첫 교환비까지
+            한꺼번에 나가서 당황한 적이 있습니다. <strong>"차값보다 차값 외 비용이 많구나"</strong> 라는 깨달음이 시작점이었습니다.
+          </p>
+          <p>
+            정비소에서도 마찬가지였습니다.
+            "엔진오일 1만 km 권장이지만 3개월 됐으니 한 번 더 갈자", "브레이크패드 6mm 남았는데 미리 갈자" 같은 권유에
+            <strong>"이게 진짜 필요한 건지, 아니면 매출인지"</strong> 판단할 기준이 없었습니다.
+            결국 인터넷을 뒤져 제조사 매뉴얼·공공 통계·정비소 공임표를 따로따로 찾아야 했죠.
+          </p>
+          <p>
+            이 사이트는 <strong>그 흩어진 정보를 한곳에 모은 것</strong>입니다.
+            "딜러가 안 알려주는 부대비용 7가지", "정비소에서 과잉 교체 당하지 않는 법" 같은
+            가이드는 모두 실제 견적·정비 사례를 바탕으로 정리했습니다.
+            광고를 위해 수치를 부풀리거나 특정 제품을 추천하지 않습니다.
+          </p>
+        </div>
+      </section>
+
+      {/* 차계부의 차별점 */}
+      <section className="mb-14">
+        <h2 className="text-xl font-bold text-slate-900 mb-4">다른 자동차 사이트와 무엇이 다른가</h2>
+        <div className="grid gap-3">
+          <div className="bg-blue-50 rounded-xl p-5 space-y-1">
+            <p className="font-semibold text-slate-800">📐 모든 계산을 공식 법령·공시 데이터로 구현</p>
+            <p className="text-[14px] text-slate-600 leading-relaxed">
+              취득세는 지방세법 7%, 공채는 국토교통부 할인율, 연료비는 한국석유공사 오피넷 평균가,
+              충전 요금은 환경부·한국전력 고시 단가. 출처가 명확하고{" "}
+              <Link href="/sources" className="text-blue-600 underline">출처 페이지</Link>에서 검증 가능합니다.
+            </p>
+          </div>
+          <div className="bg-emerald-50 rounded-xl p-5 space-y-1">
+            <p className="font-semibold text-slate-800">🛠️ 정비비는 표준 공임 + 부품가 범위로 제공</p>
+            <p className="text-[14px] text-slate-600 leading-relaxed">
+              "엔진오일 5만 원" 같은 단일 수치 대신 "공식 센터 6~10만, 일반 정비소 4~7만" 범위로 제시합니다.
+              과다 청구를 한눈에 식별할 수 있게.
+            </p>
+          </div>
+          <div className="bg-amber-50 rounded-xl p-5 space-y-1">
+            <p className="font-semibold text-slate-800">🚫 광고와 콘텐츠를 분리</p>
+            <p className="text-[14px] text-slate-600 leading-relaxed">
+              특정 정비소·보험사·중고차 플랫폼을 추천하지 않습니다.
+              비교 견적의 출처(보험다모아, 엔카, KB차차차 등)는 공정하게 나열만 합니다.
+            </p>
+          </div>
+          <div className="bg-slate-50 rounded-xl p-5 space-y-1">
+            <p className="font-semibold text-slate-800">📅 분기별 데이터 재검증</p>
+            <p className="text-[14px] text-slate-600 leading-relaxed">
+              유가·충전요금·세율은 분기마다 재확인하고{" "}
+              <Link href="/update-log" className="text-blue-600 underline">업데이트 기록</Link>에 명시합니다.
+              각 가이드 하단에 마지막 검토일을 표시합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 사이트 안내 */}
+      <section className="mb-14 bg-slate-50 rounded-xl p-6 space-y-3 text-[14px] text-slate-600 leading-relaxed">
+        <h3 className="text-base font-bold text-slate-800">사이트 안내</h3>
+        <p>
+          <strong>운영자</strong>: 차계부 편집팀 (1인 미디어 프로젝트)
+        </p>
+        <p>
+          <strong>문의·제보</strong>:{" "}
+          <Link href="/contact" className="text-blue-600 underline">contact</Link> 페이지를 통해 직접 받습니다.
+          데이터 오류나 추가 요청이 있으면 24시간 내 검토 후 회신합니다.
+        </p>
+        <p>
+          <strong>관련 페이지</strong>:{" "}
+          <Link href="/about" className="text-blue-600 underline">상세 소개</Link>{" "}·{" "}
+          <Link href="/sources" className="text-blue-600 underline">데이터 출처</Link>{" "}·{" "}
+          <Link href="/update-log" className="text-blue-600 underline">업데이트 기록</Link>{" "}·{" "}
+          <Link href="/privacy" className="text-blue-600 underline">개인정보처리방침</Link>
+        </p>
+      </section>
+
       {/* 면책 조항 */}
       <section className="text-xs text-slate-400 leading-relaxed border-t border-slate-100 pt-8">
         <p>

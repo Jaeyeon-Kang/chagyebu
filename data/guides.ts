@@ -20,10 +20,10 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["brake-pad-signal", "tire-timing", "annual-budget-guide"],
-    updatedAt: "2026-04-03",
+    updatedAt: "2026-05-15",
     sections: [
       {
-        body: "엔진오일 교체주기는 많은 차주들이 헷갈리는 항목입니다. '1만km마다'라는 말을 많이 듣지만, 이 숫자는 사용하는 오일 종류와 운행 환경에 따라 크게 달라집니다.",
+        body: "첫차를 타고 7,000km 정도 됐을 때, 처음 갔던 정비소에서 \"오일 교체주기 한참 지났다, 빨리 갈아야 한다\"는 권유를 받았습니다. 당황해서 그 자리에서 6만 원짜리 합성유로 교체했죠. 나중에 매뉴얼을 보니 제 차는 합성유 기준 15,000km 또는 12개월이 정상 주기였습니다. 즉 절반도 안 탔는데 한 번 갈아낸 셈입니다.\n\n이런 권유는 정비소 입장에서 매출이고, 차주 입장에선 매년 수만 원이 새는 항목입니다. 엔진오일 교체주기는 '1만km마다'라는 말이 많이 떠도는데, 실제로는 오일 종류·운행 환경에 따라 5,000km부터 20,000km까지 폭이 큽니다. 본인 차의 매뉴얼 기준이 가장 정확합니다.",
       },
       {
         heading: "합성유 vs 광유 — 핵심 차이",
@@ -61,10 +61,10 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "첫차 비용 계산하기", href: "/calculator/first-car-budget" },
     relatedGuides: ["engine-oil-interval", "tire-timing", "mechanic-checklist"],
-    updatedAt: "2026-04-03",
+    updatedAt: "2026-05-15",
     sections: [
       {
-        body: "브레이크패드는 안전에 직결되는 소모품입니다. 외부에서 잘 보이지 않아 교체 시점을 놓치기 쉽습니다. 다음 신호가 나타나면 바로 점검하세요.",
+        body: "브레이크패드는 정비소가 \"미리 갈자\"고 제안할 때 가장 자주 등장하는 항목입니다. 실제 운영자가 받은 정비소 견적 사례를 보면, 같은 차량에 대해 A 정비소는 \"잔량 3.5mm 남았으니 교체 권장\", B 정비소는 \"4mm 남았으니 5,000km 더 타도 됨\"이라고 답을 줬습니다. 본인 차의 기준을 모르면 50% 마모 시점에 호객당하기 쉽습니다.\n\n정비소 정상 권장 기준은 잔량 2mm 이하입니다. 이 수치 이상이면 \"바로 교체해야 한다\"는 권유는 호객일 가능성이 높습니다. 다만 안전 직결 부품이므로 다음 신호 중 하나라도 나타나면 즉시 점검은 받아야 합니다.",
       },
       {
         heading: "교체가 필요한 신호들",
@@ -232,10 +232,10 @@ export const GUIDES: Guide[] = [
     category: "buying",
     relatedCalculator: { label: "신차 vs 중고차 총소유비 비교", href: "/calculator/new-vs-used" },
     relatedGuides: ["first-car-hidden-costs", "long-term-car-cost", "mechanic-checklist"],
-    updatedAt: "2026-04-03",
+    updatedAt: "2026-05-15",
     sections: [
       {
-        body: "중고차를 살 때 많은 사람이 구매가만 봅니다. 하지만 중고차의 실제 비용은 앞으로 들어갈 정비비·수리비입니다. 이 항목들을 미리 파악하면 더 나은 선택을 할 수 있습니다.",
+        body: "주변에 중고차 산 친구 한 명은, 1,300만 원에 4년차 쏘나타를 샀는데 인수 후 3개월 안에 미션오일·브레이크패드·타이어 4본·하부 부싱까지 한꺼번에 정비비로 90만 원을 추가로 썼다고 했습니다. 결국 실구매가는 1,390만 원이 된 셈입니다. 또 다른 친구는 비슷한 시세에 골프 5년차를 샀는데, 첫해 동안 큰 정비 없이 부드럽게 탔습니다. 차이는 구매 전에 \"앞으로 들어갈 돈\"을 예상했느냐 안 했느냐였습니다.\n\n중고차의 실제 비용 = 구매가 + 첫해 누적 정비비입니다. 차령·주행거리·정비이력만 잘 봐도 이 후속 비용을 5~20% 오차 안에서 예상할 수 있습니다. 본 글은 그 예상 방법을 정리한 것입니다.",
       },
       {
         heading: "차령보다 주행거리가 더 중요한 이유",
@@ -358,10 +358,10 @@ export const GUIDES: Guide[] = [
     category: "maintaining",
     relatedCalculator: { label: "신차 vs 중고차 총소유비 비교", href: "/calculator/new-vs-used" },
     relatedGuides: ["engine-oil-interval", "brake-pad-signal", "used-car-cost-check"],
-    updatedAt: "2026-04-03",
+    updatedAt: "2026-05-15",
     sections: [
       {
-        body: "차를 5년 이상 타면 보험료는 낮아지고 자동차세는 줄지만, 수리비와 정비비는 서서히 올라가기 시작합니다. 특히 10만km를 넘기면 소모품 교환 주기가 겹치면서 한 해에 100만원 이상 정비비가 몰리는 경우가 생깁니다.",
+        body: "\"5년 넘으면 보험료 싸지니까 차값 다 뽑은 거다\"라는 말, 절반만 맞습니다. 보험료는 분명히 낮아지고 자동차세도 5% 경감이 시작됩니다. 그런데 정작 운영자 주변에서 보면, 11~12만km 구간에서 한 해에 200만 원 가까이 정비비가 한꺼번에 몰린 사례가 흔합니다. 타이밍벨트·냉각수·변속기 오일이 같이 도래하는 시점이라서 그렇습니다.\n\n즉 \"오래 탔으니 절약\"이 아니라 \"오래 탔으니 큰 한 방을 대비\"가 맞습니다. 본 글은 5만km부터 15만km까지 구간별로 어떤 비용이 언제 몰리는지, 그리고 \"여기서 교체 검토 vs 차량 교체 검토\" 분기점은 어디인지 정리한 것입니다. 폐차 vs 정비 의사결정 시점도 함께 다룹니다.",
       },
       {
         heading: "5~8만km 구간: 중기 소모품 교환",
@@ -442,10 +442,10 @@ export const GUIDES: Guide[] = [
     category: "repairing",
     relatedCalculator: { label: "신차 vs 중고차 총소유비", href: "/calculator/new-vs-used" },
     relatedGuides: ["brake-pad-signal", "engine-oil-interval", "annual-budget-guide"],
-    updatedAt: "2026-04-03",
+    updatedAt: "2026-05-15",
     sections: [
       {
-        body: "정비소에서 예상보다 높은 견적을 받으면 판단이 어렵습니다. 미리 기본 지식을 갖추고 가면 불필요한 수리를 피하고 합리적인 결정을 내릴 수 있습니다.",
+        body: "엔진오일만 갈러 갔다가 \"이것도 갈아야 해요, 저것도 곧 가야 해요\" 권유를 듣고 결국 32만 원을 결제하고 나온 적이 있습니다. 집에 와서 정비 항목들을 하나씩 검색해보니, 그 중 절반은 \"앞으로 5,000~10,000km는 더 타도 되는\" 항목이었습니다. 즉 정비소 입장에선 \"미리 갈면 안전\"이지만, 차주 입장에선 \"수명 미리 깎는\" 셈입니다.\n\n이걸 두 번 겪고 나서 깨달은 건, **정비소는 \"지금 당장 갈아야 할 것\"과 \"앞으로 갈아야 할 것\"을 구분해서 말하지 않는다**는 점입니다. 그래서 방문 전에 본인이 미리 기준을 만들어가야 합니다. 본 글은 그 기준을 만들기 위한 체크리스트입니다.",
       },
       {
         heading: "방문 전 미리 확인할 것들",
